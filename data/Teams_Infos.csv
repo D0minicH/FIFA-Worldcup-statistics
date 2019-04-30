@@ -1,33 +1,33 @@
-﻿country;Squad;ø-Age;WC particip.;Abroad;Market Value;Team-Logo
-France;23;26,6;15;65,2 %;1220 Mill. €;https://cdn.sofifa.org/teams/10/light/1335@2x.png
-Croatia;25;26,6;5;84,0 %;396,20 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/CRO
-England;23;25,1;15;4,3 %;1060 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ENG
-Germany;23;25,3;19;26,1 %;1020 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/GER
-Brazil;23;26,4;21;87,0 %;1010 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/BRA
-Spain;23;27,1;15;13,0 %;881,00 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ESP
-Portugal;24;27,5;7;70,8 %;657,25 Mill. €;https://cdn.sofifa.org/teams/10/light/1354@2x.png
-Argentina;29;26,4;17;65,5 %;629,00 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ARG
-Belgium;23;27,0;13;87,0 %;603,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/BEL
-Serbia;29;26,1;2;79,3 %;390,15 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SRB
-Uruguay;22;26,8;13;95,5 %;368,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/URU
-Senegal;25;25,8;2;96,0 %;343,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SEN
-Poland;28;27,2;8;85,7 %;332,10 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/POL
-Denmark;23;27,0;5;95,7 %;330,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/DEN
-Colombia;23;26,1;6;78,3 %;290,05 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/COL
-Switzerland;23;26,4;11;73,9 %;283,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SUI
-Russia;26;27,9;4;15,4 %;204,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/RUS
-Mexico;26;26,8;16;38,5 %;181,40 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/MEX
-Nigeria;24;24,7;6;83,3 %;135,25 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/NIG
-Morocco;23;27,6;5;82,6 %;129,63 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/MAR
-South Korea;27;25,6;10;74,1 %;103,40 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/KOR
-Iceland;23;28,9;1;91,3 %;93,30 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ISL
-Sweden;23;28,1;12;87,0 %;88,95 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SWE
-Japan;23;26,2;6;47,8 %;79,45 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/JPN
-Iran;23;27,9;5;52,2 %;63,95 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/IRN
-Tunisia;25;26,3;5;60,0 %;42,10 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/TUN
-Australia;23;27,5;5;82,6 %;39,00 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/AUS
-Peru;23;26,6;5;69,6 %;37,70 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/PER
-Egypt;24;25,5;3;25,0 %;33,75 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/EGY
-Saudi Arabia;44;26,6;5;4,5 %;27,25 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/KSA
-Costa Rica;23;26,8;5;65,2 %;26,70 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/CRC
-Panama;15;25,1;1;6,7 %;1,08 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/PAN
+﻿country;Squad;ø-Age;WC particip.;Abroad;Market Value;Team-Logo;Flag
+France;23;26,6;15;65,2 %;1220 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/FRA;https://talksport.com/wp-content/uploads/sites/5/2018/06/france.png?strip=all&quality=100&w=960
+Croatia;25;26,6;5;84,0 %;396,20 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/CRO;https://talksport.com/wp-content/uploads/sites/5/2018/06/croatia.png?strip=all&quality=100&w=960
+England;23;25,1;15;4,3 %;1060 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ENG;https://talksport.com/wp-content/uploads/sites/5/2018/06/england_0.png?strip=all&quality=100&w=960
+Germany;23;25,3;19;26,1 %;1020 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/GER;https://talksport.com/wp-content/uploads/sites/5/2018/06/germany.png?strip=all&quality=100&w=960
+Brazil;23;26,4;21;87,0 %;1010 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/BRA;https://talksport.com/wp-content/uploads/sites/5/2018/06/brazil_0.png?strip=all&quality=100&w=960
+Spain;23;27,1;15;13,0 %;881,00 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ESP;https://talksport.com/wp-content/uploads/sites/5/2018/06/spain.png?strip=all&quality=100&w=960
+Portugal;24;27,5;7;70,8 %;657,25 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/POR;https://talksport.com/wp-content/uploads/sites/5/2018/06/portugal.png?strip=all&quality=100&w=960
+Argentina;29;26,4;17;65,5 %;629,00 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ARG;https://talksport.com/wp-content/uploads/sites/5/2018/06/argentina_0.png?strip=all&quality=100&w=960
+Belgium;23;27,0;13;87,0 %;603,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/BEL;https://talksport.com/wp-content/uploads/sites/5/2018/06/belgium.png?strip=all&quality=100&w=960
+Serbia;29;26,1;2;79,3 %;390,15 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SRB;https://talksport.com/wp-content/uploads/sites/5/2018/06/serbia.png?strip=all&quality=100&w=960
+Uruguay;22;26,8;13;95,5 %;368,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/URU;https://talksport.com/wp-content/uploads/sites/5/2018/06/uruguay.png?strip=all&quality=100&w=960
+Senegal;25;25,8;2;96,0 %;343,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SEN;https://talksport.com/wp-content/uploads/sites/5/2018/06/senegal.png?strip=all&quality=100&w=960
+Poland;28;27,2;8;85,7 %;332,10 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/POL;https://talksport.com/wp-content/uploads/sites/5/2018/06/poland_0.png?strip=all&quality=100&w=960
+Denmark;23;27,0;5;95,7 %;330,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/DEN;https://talksport.com/wp-content/uploads/sites/5/2018/06/denmark.png?strip=all&quality=100&w=960
+Colombia;23;26,1;6;78,3 %;290,05 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/COL;https://talksport.com/wp-content/uploads/sites/5/2018/06/colombia.png?strip=all&quality=100&w=960
+Switzerland;23;26,4;11;73,9 %;283,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SUI;https://talksport.com/wp-content/uploads/sites/5/2018/06/switzerland.png?strip=all&quality=100&w=960
+Russia;26;27,9;4;15,4 %;204,50 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/RUS;https://talksport.com/wp-content/uploads/sites/5/2018/06/russia_1.png?strip=all&quality=100&w=960
+Mexico;26;26,8;16;38,5 %;181,40 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/MEX;https://talksport.com/wp-content/uploads/sites/5/2018/06/mexico.png?strip=all&quality=100&w=960
+Nigeria;24;24,7;6;83,3 %;135,25 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/NIG;https://talksport.com/wp-content/uploads/sites/5/2018/06/nigeria.png?strip=all&quality=100&w=960
+Morocco;23;27,6;5;82,6 %;129,63 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/MAR;https://talksport.com/wp-content/uploads/sites/5/2018/06/morocco.png?strip=all&quality=100&w=960
+South Korea;27;25,6;10;74,1 %;103,40 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/KOR;https://talksport.com/wp-content/uploads/sites/5/2018/06/southkorea.png?strip=all&quality=100&w=960
+Iceland;23;28,9;1;91,3 %;93,30 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/ISL;https://talksport.com/wp-content/uploads/sites/5/2018/06/iceland.png?strip=all&quality=100&w=960
+Sweden;23;28,1;12;87,0 %;88,95 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/SWE;https://talksport.com/wp-content/uploads/sites/5/2018/06/sweden.png?strip=all&quality=100&w=960
+Japan;23;26,2;6;47,8 %;79,45 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/JPN;https://talksport.com/wp-content/uploads/sites/5/2018/06/japan.png?strip=all&quality=100&w=960
+Iran;23;27,9;5;52,2 %;63,95 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/IRN;https://talksport.com/wp-content/uploads/sites/5/2018/06/iran.png?strip=all&quality=100&w=960
+Tunisia;25;26,3;5;60,0 %;42,10 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/TUN;https://talksport.com/wp-content/uploads/sites/5/2018/06/800px-flag_of_tunisia.png?strip=all&quality=100&w=800
+Australia;23;27,5;5;82,6 %;39,00 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/AUS;https://talksport.com/wp-content/uploads/sites/5/2018/06/australia.png?strip=all&quality=100&w=960
+Peru;23;26,6;5;69,6 %;37,70 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/PER;https://talksport.com/wp-content/uploads/sites/5/2018/06/peru.png?strip=all&quality=100&w=960
+Egypt;24;25,5;3;25,0 %;33,75 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/EGY;https://talksport.com/wp-content/uploads/sites/5/2018/06/egypt.png?strip=all&quality=100&w=960
+Saudi Arabia;44;26,6;5;4,5 %;27,25 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/KSA;https://talksport.com/wp-content/uploads/sites/5/2018/06/saudiarabia.png?strip=all&quality=100&w=960
+Costa Rica;23;26,8;5;65,2 %;26,70 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/CRC;https://talksport.com/wp-content/uploads/sites/5/2018/06/costarica.png?strip=all&quality=100&w=960
+Panama;15;25,1;1;6,7 %;1,08 Mill. €;https://api.fifa.com/api/v1/picture/associations-sq-2/PAN;https://talksport.com/wp-content/uploads/sites/5/2018/06/panama.png?strip=all&quality=100&w=960

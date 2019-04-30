@@ -1,28 +1,54 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8"/>
-  <style>
-    div.tooltip {	
-      position: absolute;			
-      text-align: left;
-      width: 120px;			
-      height: 60px;					
-      padding: 2px;				
-      font: 12px sans-serif;		
-      background: lightsteelblue;	
-      border: 0px;		
-      border-radius: 8px;			
-      pointer-events: none;
-      visibility: hidden;
-  }
-  </style>
-</head>
-<body>
-<!-- put your stuff here -->
 
-<script src='lib/d3/d3.js'></script>
-<script src='lib/lodash.js'></script>
-<script src='src/scatterplot.js'></script>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>FIFA World Cup 2018 Statistics</title>
+</head>
+
+<body>
+  <header>
+    <div class="page-header">
+      <img src="public\images\worldcup_2018_logo.png" alt="World Cup 2018 Logo">
+      <h1 class="page">Statistics</h1>
+    </div>
+  </header>
+  <div class="stats">
+    <div class="stats-title">
+      <h1>Team Comparisons</h1>
+    </div>
+    <div class="left-half">
+      <img class="flag"
+        src="https://talksport.com/wp-content/uploads/sites/5/2018/06/switzerland.png?strip=all&quality=100&w=960">
+      <p>Test</p>
+    </div>
+    <div class="right-half">
+      <img class="flag"
+        src="https://talksport.com/wp-content/uploads/sites/5/2018/06/france.png?strip=all&quality=100&w=960">
+      <p>Test</p>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stats-title">
+      <h1>Players</h1>
+    </div>
+    <div class="left-half">
+      <img class="player-image"
+        src="https://cdn.sofifa.org/players/10/19/177683.png">
+      <p>Yann Sommer</p>
+    </div>
+    <div class="right-half">
+      <img class="player-image"
+        src="https://cdn.sofifa.org/players/10/19/231747.png">
+      <p>Kylian Mbappé</p>
+    </div>
+  </div>
+
+  <script src='lib/d3/d3.js'></script>
+  <script src='lib/lodash.js'></script>
+  <script src='src/scatterplot.js'></script>
 </body>
+
 </html>

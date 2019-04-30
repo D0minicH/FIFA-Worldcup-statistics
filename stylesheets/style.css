@@ -1,0 +1,69 @@
+body {
+  font-family: "Open Sans script = all rev=1", sans-serif;
+}
+
+.page-header {
+  margin: 3vh;
+  height: 10vh;
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header img {
+  float: left;
+  max-height: 100%;
+}
+
+.page-header h1 {
+  padding-left: 15px;
+  font-size: 6vh;
+}
+
+/* Grid */
+.stats-title {
+  text-align: center;
+  grid-area: title;
+}
+.left-half {
+  grid-area: left-half;
+}
+.right-half {
+  grid-area: right-half;
+}
+
+.stats {
+  margin-left: 5%;
+  margin-right: 5%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 25px 25px 25pxw 25px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "title title title title"
+    "left-half left-half right-half right-half";
+}
+
+.flag {
+  height: 10vh;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: left;
+  width: 120px;
+  height: 60px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+  visibility: hidden;
+}
