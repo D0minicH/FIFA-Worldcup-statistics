@@ -20,12 +20,11 @@
       <h1>Team Comparisons</h1>
     </div>
     <div class="left-half">
+      <!-- <select id="selectButton"></select> -->
       <img class="flag"
         src="https://talksport.com/wp-content/uploads/sites/5/2018/06/switzerland.png?strip=all&quality=100&w=960">
       <p>Test</p>
-      <div id="Example">
-
-      </div>
+      <!-- <div id="linechart"></div> -->
     </div>
     <div class="right-half">
       <img class="flag"
@@ -33,25 +32,30 @@
       <p>Test</p>
     </div>
   </div>
+  <div id="container">
+    <div id="tournament-tree">
+      <div id="labels"></div>
+    </div>
+  </div>
   <div class="stats">
     <div class="stats-title">
       <h1>Players</h1>
     </div>
     <div class="left-half">
-      <img class="player-image"
-        src="https://cdn.sofifa.org/players/10/19/177683.png">
+      <img class="player-image" src="https://cdn.sofifa.org/players/10/19/177683.png">
       <p>Yann Sommer</p>
     </div>
     <div class="right-half">
-      <img class="player-image"
-        src="https://cdn.sofifa.org/players/10/19/231747.png">
+      <img class="player-image" src="https://cdn.sofifa.org/players/10/19/231747.png">
       <p>Kylian Mbappé</p>
     </div>
   </div>
 
-  <script src='lib/d3/d3.js'></script>
-  <script src='lib/lodash.js'></script>
-  <script src='src/scatterplot.js'></script>
+  <script src='./lib/d3/d3.js'></script>
+  <script src='./lib/lodash.js'></script>
+  <script src='./src/tournamenttree.js'></script>
+  <!-- Color Scale -->
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 </body>
 
 </html>
