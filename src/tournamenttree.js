@@ -142,13 +142,13 @@ var nodes = d3.hierarchy(treeData);
 // maps the node data to the tree layout
 nodes = treemap(nodes);
 
-var svg = d3
+var tournamentCanvas = d3
   .select("#tournament-tree")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
 
-var g = svg
+var g = tournamentCanvas
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

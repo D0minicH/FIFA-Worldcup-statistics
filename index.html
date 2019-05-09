@@ -20,17 +20,17 @@
       <h1>Team Comparisons</h1>
     </div>
     <div class="left-half">
-      <!-- <select id="selectButton"></select> -->
-      <img class="flag"
-        src="https://talksport.com/wp-content/uploads/sites/5/2018/06/switzerland.png?strip=all&quality=100&w=960">
-      <p>Test</p>
-      <!-- <div id="linechart"></div> -->
+      <select id="select-team-button-left"></select>
+      <div id="team-statistics"></div>
+      <div id="flag"></div>
+      <span class="team-category">Final placement: </span>
+      <p id="final-placement"></p>
+      <p id="market-value"></p>
     </div>
     <div class="right-half">
-      <img class="flag"
-        src="https://talksport.com/wp-content/uploads/sites/5/2018/06/france.png?strip=all&quality=100&w=960">
-      <p>Test</p>
+      <select id="select-team-button-right"></select>
     </div>
+    <div id="team-barchart"></div>
   </div>
   <div id="container">
     <div id="tournament-tree">
@@ -61,6 +61,7 @@
 
   <script src='./lib/d3/d3.js'></script>
   <script src='./lib/lodash.js'></script>
+  <script src="./src/teamstatisticsleft.js"></script>
   <script src='./src/tournamenttree.js'></script>
   <script src='./src/player_appearances.js'></script>
   <script src='./src/player_minutes.js'></script>

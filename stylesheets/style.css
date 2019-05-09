@@ -49,24 +49,29 @@ body {
     "title title title title"
     "left-half left-half right-half right-half";
 }
+/* Grid --end*/
 
 .flag {
   height: 10vh;
 }
 
-div.tooltip {
-  position: absolute;
-  text-align: left;
-  width: 120px;
-  height: 60px;
-  padding: 2px;
-  font: 12px sans-serif;
-  background: lightsteelblue;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-  visibility: hidden;
+/*Custom Select Button*/
+
+/*Custom Select Button -- end*/
+
+/*Team statistics*/
+.team-category{
+  font-weight: bold;
 }
+
+#team-barchart .domain{
+  opacity: 0;
+}
+
+#team-barchart .line{
+  stroke: 0;
+}
+/*Team statistics -- end*/
 
 /*Tournament Table*/
 .link {
