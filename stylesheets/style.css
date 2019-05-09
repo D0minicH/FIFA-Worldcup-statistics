@@ -140,11 +140,18 @@ body {
 .cell.score {
   color: white;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
+  vertical-align: middle;
 }
 
 .cell.name {
   color: white;
-  min-width: 140px;
+  min-width: 120px;
   padding-right: 10px;
+  vertical-align: middle;
+}
+
+.cell.flag{
+  max-height: 20px;
+  padding-top: 2px
 }
 /*Tournament Table -- End*/
