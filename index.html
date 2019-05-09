@@ -20,24 +20,30 @@
       <h1>Team Comparisons</h1>
     </div>
     <div class="left-half">
-      <select id="select-team-button-left"></select>
-      <div id="team-statistics"></div>
-      <div id="flag"></div>
+      <select id="select-team-button-left" style="margin-left:37%"></select>
+      <div id="team-statistics-left"></div>
       <span class="team-category">Final placement: </span>
-      <p id="final-placement"></p>
-      <p id="market-value"></p>
+      <p id="final-placement-left"></p>
+      <p id="market-value-left"></p>
     </div>
     <div class="right-half">
-      <select id="select-team-button-right"></select>
+      <select id="select-team-button-right" style="margin-left:37%"></select>
+      <div id="team-statistics-right"></div>
+      <span class="team-category">Final placement: </span>
+      <p id="final-placement-right"></p>
+      <p id="market-value-right"></p>
     </div>
-    <div id="team-barchart"></div>
+  </div>
+  <div class="team-barchart">
+    <div id="team-barchart-left"></div>
+    <div id="team-barchart-right"></div>
   </div>
   <div id="container">
     <div id="tournament-tree">
       <div id="labels"></div>
     </div>
   </div>
-  
+
   <div class="stats">
     <div class="stats-title">
       <h1>Players</h1>
@@ -51,17 +57,18 @@
       <p>Kylian Mbappé</p>
     </div>
   </div>
-  
+
   <div id="player-stats-appearances"></div>
   <div id="player-stats-minutes"></div>
   <div id="player-stats-goals"></div>
   <div id="player-stats-rating"></div>
   <div id="player-stats-caps"></div>
-  
+
 
   <script src='./lib/d3/d3.js'></script>
   <script src='./lib/lodash.js'></script>
   <script src="./src/teamstatisticsleft.js"></script>
+  <script src="./src/teamstatisticsright.js"></script>
   <script src='./src/tournamenttree.js'></script>
   <script src='./src/player_appearances.js'></script>
   <script src='./src/player_minutes.js'></script>

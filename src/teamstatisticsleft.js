@@ -1,29 +1,29 @@
 
-var marginGeneralInfos = { top: 10, right: 100, bottom: 30, left: 30 },
-    widthGeneralInfos = 400 - marginGeneralInfos.left - marginGeneralInfos.right,
-    heightGeneralInfos = 200 - marginGeneralInfos.top - marginGeneralInfos.bottom;
+var marginInfosLeft = { top: 10, right: 100, bottom: 30, left: 30 },
+    widthInfosLeft = 400 - marginInfosLeft.left - marginInfosLeft.right,
+    heightInfosLeft = 200 - marginInfosLeft.top - marginInfosLeft.bottom;
 
 // set the dimensions and margins of the graph
-var marginTeamBarChart = { top: 10, right: 300, bottom: 30, left: 30 },
-    widthTeamBarChart = 1000 - marginTeamBarChart.left - marginTeamBarChart.right,
-    heightTeamBarChart = 600 - marginTeamBarChart.top - marginTeamBarChart.bottom;
+var marginTeamBarLeft = { top: 10, right: 200, bottom: 30, left: 30 },
+    widthTeamBarLeft = 650 - marginTeamBarLeft.left - marginTeamBarLeft.right,
+    heightTeamBarLeft = 600 - marginTeamBarLeft.top - marginTeamBarLeft.bottom;
 
 // append the svg object to the body of the page
-var genralInfoCanvas = d3
-  .select("#team-statistics")
+var genralInfoCanvasLeft = d3
+  .select("#team-statistics-left")
   .append("svg")
-  .attr("width", widthGeneralInfos + marginGeneralInfos.left + marginGeneralInfos.right)
-  .attr("height", heightGeneralInfos + marginGeneralInfos.top + marginGeneralInfos.bottom)
+  .attr("width", widthInfosLeft + marginInfosLeft.left + marginInfosLeft.right)
+  .attr("height", heightInfosLeft + marginInfosLeft.top + marginInfosLeft.bottom)
   .append("g")
-  .attr("transform", "translate(" + marginTeamBarChart.left + "," + marginTeamBarChart.top + ")");
+  .attr("transform", "translate(" + marginTeamBarLeft.left + "," + marginTeamBarLeft.top + ")");
 
-var teamBarChartCanvas = d3
-  .select("#team-barchart")
+var teamBarChartCanvasLeft = d3
+  .select("#team-barchart-left")
   .append("svg")
-  .attr("width", widthTeamBarChart + marginTeamBarChart.left + marginTeamBarChart.right)
-  .attr("height", heightTeamBarChart + marginTeamBarChart.top + marginTeamBarChart.bottom)
+  .attr("width", widthTeamBarLeft + marginTeamBarLeft.left + marginTeamBarLeft.right)
+  .attr("height", heightTeamBarLeft + marginTeamBarLeft.top + marginTeamBarLeft.bottom)
   .append("g")
-  .attr("transform", "translate(" + marginTeamBarChart.left + "," + marginTeamBarChart.top + ")");
+  .attr("transform", "translate(" + marginTeamBarLeft.left + "," + marginTeamBarLeft.top + ")");
 
 var teamCategories = [
   "matches_played",
@@ -49,12 +49,12 @@ Promise.all([
   console.log(data[1][0])
 
   //map with all team names
-  var allteams = d3.map(data[1], function(d){return(d.country)}).keys()
+  var allteamsLeft = d3.map(data[1], function(d){return(d.country)}).keys()
 
-  // Dropdown-Button
+  // Dropdown-Button left
   d3.select("#select-team-button-left")
     .selectAll("myOptions")
-    .data(allteams)
+    .data(allteamsLeft)
     .enter()
     .append("option")
     .text(function(d) {return d;}) // text showed in the menu
@@ -65,38 +65,40 @@ Promise.all([
 
   // generate a random index value and set the selector to the team
   // at that index value in the data array
-  var index = 0;
+  var indexLeft = 0;
   //d3.select("#select-team-button-left").property("selectedIndex", index);
   // console.log(index);
 
   //Flag
-  d3.select("svg")
+  genralInfoCanvasLeft
     .append("image")
     .data(data)
-    .attr("id", "flag")
+    .attr("id", "flag-left")
     .attr("y", 40)
     .attr("x", 0)
     .attr("xlink:href", function(d) {
-      return data[0][index]["flag"];
+      return data[0][indexLeft]["flag"];
     })
     .attr("height", 110);
+  d3.select("#flag-left").style('transform', 'translate(14%, 0)')
 
-  d3.select("#final-placement")
+
+  d3.select("#final-placement-left")
     .append("text")
     .data(data)
     // .attr("y", 200)
     // .attr("x", 0)
     .text(function(d) {
-      return data[0][index]["final_placement"];
+      return data[0][indexLeft]["final_placement"];
     });
 
-  d3.select("#market-value")
+  d3.select("#market-value-left")
     .append("text")
     .data(data)
     // .attr("y", 200)
     // .attr("x", 0)
     .text(function(d) {
-      return "Market value: " + (data[0][index]["market_value"] + " Million €");
+      return "Market value: " + (data[0][indexLeft]["market_value"] + " Million €");
     });
 
   /* Bar Chart */
@@ -104,22 +106,22 @@ Promise.all([
   var x = d3
     .scaleLinear()
     .domain([0, 120])
-    .range([widthTeamBarChart,0]);
-  teamBarChartCanvas
+    .range([widthTeamBarLeft,0]);
+  teamBarChartCanvasLeft
     .append("g")
-    .attr("transform", "translate(0," + heightTeamBarChart + ")")
+    .attr("transform", "translate(0," + heightTeamBarLeft + ")")
     .call(d3.axisBottom(x))
     .style("opacity", 0)    
 
   // Y axis
   var y = d3
     .scaleBand()
-    .range([0, heightTeamBarChart])
+    .range([0, heightTeamBarLeft])
     .domain(teamCategories)
     .padding(0.1);
-  teamBarChartCanvas
+  teamBarChartCanvasLeft
     .append("g")
-    .attr("transform", "translate( " + widthTeamBarChart + ", 0 )")
+    .attr("transform", "translate( " + widthTeamBarLeft + ", 0 )")
     .attr("dx", ".75em")
     .call(d3.axisRight(y).tickSize([0]))
     .selectAll("text")
@@ -128,19 +130,19 @@ Promise.all([
     .style("font-weight", "bold");
 
   //Bars
-  teamBarChartCanvas.selectAll("bar")
-    .data(data[1].filter(function(d){return d.country==allteams[0]}))
+  teamBarChartCanvasLeft.selectAll("bar")
+    .data(data[1].filter(function(d){return d.country==allteamsLeft[0]}))
     .enter()
     .append("rect")
     .attr("x", function(d) {return x(d.value);})
     .attr("y", function(d) {return y(d.category);})
-    .attr("width", function(d) {return widthTeamBarChart - x(d.value);})
+    .attr("width", function(d) {return widthTeamBarLeft - x(d.value);})
     .attr("height", y.bandwidth())
     .attr("fill", "#69b3a2");
 
   //Bar Label
-  teamBarChartCanvas.selectAll(".text")  		
-    .data(data[1].filter(function(d){return d.country==allteams[0]}))
+  teamBarChartCanvasLeft.selectAll(".text")  		
+    .data(data[1].filter(function(d){return d.country==allteamsLeft[0]}))
     .enter()
     .append("text")
     .attr("class","label")
@@ -151,62 +153,62 @@ Promise.all([
     .text(function(d) { return d.value; });   	
 
   // Updates the chart
-  function updateBarChart(selectedGroup) {
+  function updateLeftTeam(selectedGroupLeft) {
 
     // Create new generalInfo data with selection
-    var generalInfoDataFilter = data[0].filter(function(d){return d.country==selectedGroup})
+    var generalInfoDataFilterLeft = data[0].filter(function(d){return d.country==selectedGroupLeft})
 
     //Flag
-    d3.selectAll("image")
-      .data(generalInfoDataFilter)
-      .attr("id", "flag")
+    d3.selectAll("#flag-left")
+      .data(generalInfoDataFilterLeft)
+      .attr("id", "flag-left")
       .attr("xlink:href", function(d) {
-        return generalInfoDataFilter[0]["flag"];
+        return generalInfoDataFilterLeft[0]["flag"];
       })
       .attr("height", 110);
 
-    d3.select("#final-placement")
+    d3.select("#final-placement-left")
       .data(data)
       .attr("y", 200)
       .attr("x", 0)
       .text(function(d) {
-        return generalInfoDataFilter[0]["final_placement"];
+        return generalInfoDataFilterLeft[0]["final_placement"];
       });
 
-    d3.select("#market-value")
+    d3.select("#market-value-left")
       .data(data)
       .text(function(d) {
-        return "Market value: " + (generalInfoDataFilter[0]["market_value"] + " Million €");
+        return "Market value: " + (generalInfoDataFilterLeft[0]["market_value"] + " Million €");
       });
 
     // Create new barChart data with selection
-    var barChartDataFilter = data[1].filter(function(d){return d.country==selectedGroup})
+    var barChartDataFilterLeft = data[1].filter(function(d){return d.country==selectedGroupLeft})
 
     // variable to map data to existing bars
-    var updateBars = teamBarChartCanvas.selectAll("rect")
-      .data(barChartDataFilter)
+    var updateBarsLeft = teamBarChartCanvasLeft.selectAll("rect")
+      .data(barChartDataFilterLeft)
     
     // Pass data to update bar
-    updateBars.enter()
+    updateBarsLeft.enter()
     .append("rect")
-    .merge(updateBars)
+    .merge(updateBarsLeft)
       .transition()
       .duration(1000)
         .attr("x", function(d) {return x(d.value);})
         .attr("y", function(d) {return y(d.category);})
-        .attr("width", function(d) {return widthTeamBarChart - x(d.value);})
+        .attr("width", function(d) {return widthTeamBarLeft - x(d.value);})
         .attr("height", y.bandwidth())
         .attr("fill", "#69b3a2");
 
     // variable to map data to existing barText
-    var updatetext = teamBarChartCanvas.selectAll(".label")
-      .data(barChartDataFilter)
+    var updatetextLeft = teamBarChartCanvasLeft.selectAll(".label")
+      .data(barChartDataFilterLeft)
     
-    updatetext.exit().remove();
+    updatetextLeft.exit().remove();
     
-    updatetext.enter()
+    updatetextLeft.enter()
     .append("text")
-    .merge(updatetext)
+    .merge(updatetextLeft)
     .transition()
       .duration(1000)
         .attr("class","label")
@@ -214,14 +216,12 @@ Promise.all([
         .attr("y", function(d) { return y(d.category) + 14; })
         .attr("dy", ".75em")
         .text(function(d) { return d.value; });   
-
-    
   }
 
   // When the button is changed, run the updateChart function
   d3.select("#select-team-button-left").on("change", function(d) {
-      var selectedOption = d3.select(this).property("value")
-      console.log("Option:"+selectedOption)
-      updateBarChart(selectedOption)
+      var selectedOptionLeft = d3.select(this).property("value")
+      console.log("Option Left:"+selectedOptionLeft)
+      updateLeftTeam(selectedOptionLeft)
   })
 });
