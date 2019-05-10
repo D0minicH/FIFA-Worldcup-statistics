@@ -25,6 +25,13 @@ var teamBarChartCanvasRight = d3
   .append("g")
   .attr("transform", "translate(" + marginTeamBarRight.left + "," + marginTeamBarRight.top + ")");
 
+var possessionPieCanvasRight = d3.select("#possession-pie-right")
+  .append("svg")
+    .attr("width", widthPie)
+    .attr("height", heightPie)
+  .append("g")
+    .attr("transform", "translate(" + widthPie / 2 + "," + heightPie / 2 + ")");
+
 var teamCategories = [
   "matches_played",
   "goals_scored",
@@ -128,7 +135,7 @@ d3.select("#market-value-right")
     .attr("y", function(d) {return y(d.category);})
     .attr("width", function(d) {return x(d.value);})
     .attr("height", y.bandwidth())
-    .attr("fill", "#69b3a2");
+    .attr("fill", "#006847");
 
   //Bar Label
   teamBarChartCanvasRight.selectAll(".text")  		
@@ -140,7 +147,38 @@ d3.select("#market-value-right")
     .attr("y", function(d) { return y(d.category) + 14; })
     .style("font-weight", "bold")
     .attr("dy", ".75em")
-    .text(function(d) { return d.value; });   	
+    .text(function(d) { return d.value; });   
+    
+//Progress Pie Chart
+  var arc = d3.arc()
+    .startAngle(0)
+    .innerRadius(110)
+    .outerRadius(radius)
+
+// Add the arc
+var progressBarRight = possessionPieCanvasRight.append("path")
+.datum({endAngle: (data[0][indexRight]["possession"]/100) * tau})
+.style("fill", "#006847")
+.attr("d", arc);
+
+var progressTexRight = possessionPieCanvasRight.append("text")
+    .attr("class","percentage")
+	  .attr("text-anchor", "middle")
+    .attr('font-size', '2.5em')
+    .attr('x',10)
+		.attr('y', 20)
+    .text(data[0][indexRight]["possession"]+"%");
+
+function arcTweenRight(newAngle, newText) {
+  return function(d) {
+    var interpolate = d3.interpolate(d.endAngle, newAngle);
+    return function(t) {
+      d.endAngle = interpolate(t);
+      progressTexRight.text(newText)
+      return arc(d);
+    };
+  };
+};
 
   // Updates the chart
   function updateRightTeam(selectedGroupRight) {
@@ -188,17 +226,17 @@ d3.select("#market-value-right")
         .attr("y", function(d) {return y(d.category);})
         .attr("width", function(d) {return x(d.value);})
         .attr("height", y.bandwidth())
-        .attr("fill", "#69b3a2");
+        .attr("fill", "#006847");
 
     // variable to map data to existing barText
-    var updatetextRight = teamBarChartCanvasRight.selectAll(".label")
+    var updateBarTextRight = teamBarChartCanvasRight.selectAll(".label")
       .data(barChartDataFilterRight)
     
-    updatetextRight.exit().remove();
+    updateBarTextRight.exit().remove();
     
-    updatetextRight.enter()
+    updateBarTextRight.enter()
     .append("text")
-    .merge(updatetextRight)
+    .merge(updateBarTextRight)
     .transition()
       .duration(1000)
         .attr("class","label")
@@ -206,8 +244,13 @@ d3.select("#market-value-right")
         .attr("y", function(d) { return y(d.category) + 14; })
         .attr("dy", ".75em")
         .text(function(d) { return d.value; });   
+  
+  //udate Progress Pie Chart
+  progressBarRight.transition()
+      .duration(750)
+      .attrTween("d", arcTweenRight((generalInfoDataFilterRight[0]["possession"]/100) * tau,
+          generalInfoDataFilterRight[0]["possession"]+"%"))
 
-    
   }
 
   // When the button is changed, run the updateChart function

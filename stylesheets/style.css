@@ -38,10 +38,6 @@ body {
   grid-area: right-half;
 }
 
-.team-barchart{
-  grid-area: team-bar;
-}
-
 .stats {
   margin-left: 5%;
   margin-right: 5%;
@@ -54,10 +50,14 @@ body {
     "left-half left-half right-half right-half";}
 /* Grid --end*/
 
+/*Custom Select Button*/
 .select-team-button-left{
   padding-left: 50%;
 }
+/*Custom Select Button -- end*/
 
+
+/*BarChart Grid*/
 .team-barchart-left{
   grid-area: left-half;
 }
@@ -76,10 +76,36 @@ body {
   grid-template-areas:
     "left-half right-half";
 }
+/*BarChart Grid -- end*/
 
-/*Custom Select Button*/
+/*Possession Grid*/
+.possession-pie-left{
+  grid-area: pie-left;
+  justify-self: end;
+}
 
-/*Custom Select Button -- end*/
+#possesion-title{
+  text-align:center;
+  grid-area: category-title;
+}
+
+.possession-pie-right{
+  grid-area: pie-right;
+  justify-self: start;
+}
+
+.possession-pie{
+  margin-left: 15%;
+  margin-right: 15%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 45 10 45;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "pie-left category-title pie-right";
+}
+/*Possession Grid -- end*/
 
 /*Team statistics*/
 .team-category{

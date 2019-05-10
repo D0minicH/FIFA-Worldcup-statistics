@@ -3,10 +3,20 @@ var marginInfosLeft = { top: 10, right: 100, bottom: 30, left: 30 },
     widthInfosLeft = 400 - marginInfosLeft.left - marginInfosLeft.right,
     heightInfosLeft = 200 - marginInfosLeft.top - marginInfosLeft.bottom;
 
-// set the dimensions and margins of the graph
+//Dimensions and margins Bar Chart
 var marginTeamBarLeft = { top: 10, right: 200, bottom: 30, left: 30 },
     widthTeamBarLeft = 650 - marginTeamBarLeft.left - marginTeamBarLeft.right,
     heightTeamBarLeft = 600 - marginTeamBarLeft.top - marginTeamBarLeft.bottom;
+   
+//Dimensions for the Piechart    
+var widthPie = 250
+    heightPie = 250
+    marginPie = 40
+    radius = Math.min(widthPie, heightPie) / 2 - marginPie
+    tau= 2 * Math.PI,
+    progress = 0,
+    total = 100,
+    formatPercent = d3.format(".0%");
 
 // append the svg object to the body of the page
 var genralInfoCanvasLeft = d3
@@ -24,6 +34,13 @@ var teamBarChartCanvasLeft = d3
   .attr("height", heightTeamBarLeft + marginTeamBarLeft.top + marginTeamBarLeft.bottom)
   .append("g")
   .attr("transform", "translate(" + marginTeamBarLeft.left + "," + marginTeamBarLeft.top + ")");
+
+  var possessionPieCanvasLeft = d3.select("#possession-pie-left")
+  .append("svg")
+    .attr("width", widthPie)
+    .attr("height", heightPie)
+  .append("g")
+    .attr("transform", "translate(" + widthPie / 2 + "," + heightPie / 2 + ")");
 
 var teamCategories = [
   "matches_played",
@@ -138,7 +155,7 @@ Promise.all([
     .attr("y", function(d) {return y(d.category);})
     .attr("width", function(d) {return widthTeamBarLeft - x(d.value);})
     .attr("height", y.bandwidth())
-    .attr("fill", "#69b3a2");
+    .attr("fill", "#84b0dc");
 
   //Bar Label
   teamBarChartCanvasLeft.selectAll(".text")  		
@@ -152,7 +169,38 @@ Promise.all([
     .attr("dy", ".75em")
     .text(function(d) { return d.value; });   	
 
-  // Updates the chart
+//Progress Pie Chart
+  var arc = d3.arc()
+    .startAngle(0)
+    .innerRadius(110)
+    .outerRadius(radius)
+
+// Add the arc
+var progressBarLeft = possessionPieCanvasLeft.append("path")
+.datum({endAngle: (data[0][indexLeft]["possession"]/100) * tau})
+.style("fill", "#84b0dc")
+.attr("d", arc);
+
+var progressTextLeft = possessionPieCanvasLeft.append("text")
+    .attr("class","percentage")
+	  .attr("text-anchor", "middle")
+    .attr('font-size', '2.5em')
+    .attr('x',10)
+		.attr('y', 20)
+	  .text(data[0][indexLeft]["possession"]+"%");
+
+function arcTweenLeft(newAngle, newText) {
+  return function(d) {
+    var interpolate = d3.interpolate(d.endAngle, newAngle);
+    return function(t) {
+      d.endAngle = interpolate(t);
+      progressTextLeft.text(newText)
+      return arc(d);
+    };
+  };
+};
+
+  // Updates all values
   function updateLeftTeam(selectedGroupLeft) {
 
     // Create new generalInfo data with selection
@@ -198,17 +246,17 @@ Promise.all([
         .attr("y", function(d) {return y(d.category);})
         .attr("width", function(d) {return widthTeamBarLeft - x(d.value);})
         .attr("height", y.bandwidth())
-        .attr("fill", "#69b3a2");
+        .attr("fill", "#84b0dc");
 
     // variable to map data to existing barText
-    var updatetextLeft = teamBarChartCanvasLeft.selectAll(".label")
+    var updateBartextLeft = teamBarChartCanvasLeft.selectAll(".label")
       .data(barChartDataFilterLeft)
     
-    updatetextLeft.exit().remove();
+    updateBartextLeft.exit().remove();
     
-    updatetextLeft.enter()
+    updateBartextLeft.enter()
     .append("text")
-    .merge(updatetextLeft)
+    .merge(updateBartextLeft)
     .transition()
       .duration(1000)
         .attr("class","label")
@@ -216,7 +264,13 @@ Promise.all([
         .attr("y", function(d) { return y(d.category) + 14; })
         .attr("dy", ".75em")
         .text(function(d) { return d.value; });   
-  }
+
+//udate Progress Pie Chart
+  progressBarLeft.transition()
+      .duration(750)
+      .attrTween("d", arcTweenLeft((generalInfoDataFilterLeft[0]["possession"]/100) * tau,
+          generalInfoDataFilterLeft[0]["possession"]+"%"))
+}
 
   // When the button is changed, run the updateChart function
   d3.select("#select-team-button-left").on("change", function(d) {
