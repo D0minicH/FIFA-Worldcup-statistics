@@ -26,6 +26,40 @@ body {
   font-size: 6vh;
 }
 
+/* Navbar */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 98.8%;
+}
+
+.sticky + .stats {
+  padding-top: 3.7%;
+}
+
+/*Custom Select Button*/
+.select-team-button-left{
+  padding-left: 50%;
+  grid-area: left-select;
+}
+
+.select-team-button-right{
+  padding-left: 50%;
+  grid-area: right-select;
+}
+/*Custom Select Button -- end*/
+
+#navbar {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-color: #0F4583;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 50 50;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "left-select right-select";}
+
 /* Grid */
 .stats-title {
   text-align: center;
@@ -49,13 +83,6 @@ body {
     "title title title title"
     "left-half left-half right-half right-half";}
 /* Grid --end*/
-
-/*Custom Select Button*/
-.select-team-button-left{
-  padding-left: 50%;
-}
-/*Custom Select Button -- end*/
-
 
 /*BarChart Grid*/
 .team-barchart-left{

@@ -8,7 +8,7 @@ Student 2: Hristian Stoilov
  You can select the teams and their according  players you want to compare.
 
 ## Comments
-This is an Import from a private github-repo. As mentioned already during class, it can be not yet called a first prototype, since the data wrangling took much more time than expected and we didn't have that much time to work on the actual programming. Most work will be done during the project week.
+This is a first Prototype. Finalisation will happen during the next 2 weeks.
 
 ## Technical information
 **Main file path**: index.html
@@ -17,5 +17,5 @@ This is an Import from a private github-repo. As mentioned already during class,
 ## Status
 |Version|Status|
 |--|--|
-|First prototype ready | no |
+|First prototype ready | yes |
 |Final version ready  | no |

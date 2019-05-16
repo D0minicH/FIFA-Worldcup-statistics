@@ -135,7 +135,7 @@ d3.select("#market-value-right")
     .attr("y", function(d) {return y(d.category);})
     .attr("width", function(d) {return x(d.value);})
     .attr("height", y.bandwidth())
-    .attr("fill", "#006847");
+    .attr("fill", data[0][indexRight]["color"]);
 
   //Bar Label
   teamBarChartCanvasRight.selectAll(".text")  		
@@ -156,9 +156,14 @@ d3.select("#market-value-right")
     .outerRadius(radius)
 
 // Add the arc
-var progressBarRight = possessionPieCanvasRight.append("path")
+var backgroundRightPie = possessionPieCanvasRight.append("path")
+    .datum({endAngle: tau})
+    .style("fill", "#F4F4F4")
+    .attr("d", arc);
+
+var progressPieRight = possessionPieCanvasRight.append("path")
 .datum({endAngle: (data[0][indexRight]["possession"]/100) * tau})
-.style("fill", "#006847")
+.style("fill", data[0][indexRight]["color"])
 .attr("d", arc);
 
 var progressTexRight = possessionPieCanvasRight.append("text")
@@ -169,10 +174,11 @@ var progressTexRight = possessionPieCanvasRight.append("text")
 		.attr('y', 20)
     .text(data[0][indexRight]["possession"]+"%");
 
-function arcTweenRight(newAngle, newText) {
+function arcTweenRight(newAngle, newText, newColor) {
   return function(d) {
     var interpolate = d3.interpolate(d.endAngle, newAngle);
     return function(t) {
+      progressPieRight.style("fill", newColor)
       d.endAngle = interpolate(t);
       progressTexRight.text(newText)
       return arc(d);
@@ -226,7 +232,7 @@ function arcTweenRight(newAngle, newText) {
         .attr("y", function(d) {return y(d.category);})
         .attr("width", function(d) {return x(d.value);})
         .attr("height", y.bandwidth())
-        .attr("fill", "#006847");
+        .attr("fill", generalInfoDataFilterRight[0]["color"]);
 
     // variable to map data to existing barText
     var updateBarTextRight = teamBarChartCanvasRight.selectAll(".label")
@@ -246,8 +252,9 @@ function arcTweenRight(newAngle, newText) {
         .text(function(d) { return d.value; });   
   
   //udate Progress Pie Chart
-  progressBarRight.transition()
-      .duration(750)
+  progressPieRight.transition()
+      .attr("fill", generalInfoDataFilterRight[0]["color"])
+      .duration(1000)
       .attrTween("d", arcTweenRight((generalInfoDataFilterRight[0]["possession"]/100) * tau,
           generalInfoDataFilterRight[0]["possession"]+"%"))
 

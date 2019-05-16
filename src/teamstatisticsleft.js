@@ -8,6 +8,11 @@ var marginTeamBarLeft = { top: 10, right: 200, bottom: 30, left: 30 },
     widthTeamBarLeft = 650 - marginTeamBarLeft.left - marginTeamBarLeft.right,
     heightTeamBarLeft = 600 - marginTeamBarLeft.top - marginTeamBarLeft.bottom;
    
+//Dimensions barAxis (Y)
+var marginBarAxis = { top: 10, right: 50, bottom: 30, left: 50 },
+    widthBarAxis = 650 - marginBarAxis.left - marginBarAxis.right,
+    heightBarAxis = 600 - marginBarAxis.top - marginBarAxis.bottom;
+
 //Dimensions for the Piechart    
 var widthPie = 250
     heightPie = 250
@@ -155,7 +160,7 @@ Promise.all([
     .attr("y", function(d) {return y(d.category);})
     .attr("width", function(d) {return widthTeamBarLeft - x(d.value);})
     .attr("height", y.bandwidth())
-    .attr("fill", "#84b0dc");
+    .attr("fill", data[0][indexLeft]["color"]);
 
   //Bar Label
   teamBarChartCanvasLeft.selectAll(".text")  		
@@ -176,10 +181,15 @@ Promise.all([
     .outerRadius(radius)
 
 // Add the arc
-var progressBarLeft = possessionPieCanvasLeft.append("path")
-.datum({endAngle: (data[0][indexLeft]["possession"]/100) * tau})
-.style("fill", "#84b0dc")
-.attr("d", arc);
+var backgroundleftPie = possessionPieCanvasLeft.append("path")
+    .datum({endAngle: tau})
+    .style("fill", "#F4F4F4")
+    .attr("d", arc);
+
+var progressPieLeft = possessionPieCanvasLeft.append("path")
+    .datum({endAngle: (data[0][indexLeft]["possession"]/100) * tau})
+    .style("fill", data[0][indexLeft]["color"])
+    .attr("d", arc);
 
 var progressTextLeft = possessionPieCanvasLeft.append("text")
     .attr("class","percentage")
@@ -189,10 +199,11 @@ var progressTextLeft = possessionPieCanvasLeft.append("text")
 		.attr('y', 20)
 	  .text(data[0][indexLeft]["possession"]+"%");
 
-function arcTweenLeft(newAngle, newText) {
+function arcTweenLeft(newAngle, newText, newColor) {
   return function(d) {
     var interpolate = d3.interpolate(d.endAngle, newAngle);
     return function(t) {
+      progressPieLeft.style("fill", newColor)
       d.endAngle = interpolate(t);
       progressTextLeft.text(newText)
       return arc(d);
@@ -246,7 +257,7 @@ function arcTweenLeft(newAngle, newText) {
         .attr("y", function(d) {return y(d.category);})
         .attr("width", function(d) {return widthTeamBarLeft - x(d.value);})
         .attr("height", y.bandwidth())
-        .attr("fill", "#84b0dc");
+        .attr("fill", generalInfoDataFilterLeft[0]["color"]);
 
     // variable to map data to existing barText
     var updateBartextLeft = teamBarChartCanvasLeft.selectAll(".label")
@@ -266,8 +277,9 @@ function arcTweenLeft(newAngle, newText) {
         .text(function(d) { return d.value; });   
 
 //udate Progress Pie Chart
-  progressBarLeft.transition()
-      .duration(750)
+  progressPieLeft.transition()
+      .attr("fill", generalInfoDataFilterLeft[0]["color"])
+      .duration(1000)
       .attrTween("d", arcTweenLeft((generalInfoDataFilterLeft[0]["possession"]/100) * tau,
           generalInfoDataFilterLeft[0]["possession"]+"%"))
 }
