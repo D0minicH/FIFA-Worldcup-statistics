@@ -1,16 +1,16 @@
 
-var marginInfosLeft = { top: 10, right: 100, bottom: 30, left: 30 },
-    widthInfosLeft = 400 - marginInfosLeft.left - marginInfosLeft.right,
-    heightInfosLeft = 200 - marginInfosLeft.top - marginInfosLeft.bottom;
+var marginInfosLeft = { top: 0, right: 0, bottom: 0, left: 0 },
+    widthInfosLeft = 100 - marginInfosLeft.left - marginInfosLeft.right,
+    heightInfosLeft = 50 - marginInfosLeft.top - marginInfosLeft.bottom;
 
 //Dimensions and margins Bar Chart
-var marginTeamBarLeft = { top: 10, right: 200, bottom: 30, left: 30 },
-    widthTeamBarLeft = 650 - marginTeamBarLeft.left - marginTeamBarLeft.right,
+var marginTeamBarLeft = { top: 10, right: 0, bottom: 30, left: 30 },
+    widthTeamBarLeft = 450 - marginTeamBarLeft.left - marginTeamBarLeft.right,
     heightTeamBarLeft = 600 - marginTeamBarLeft.top - marginTeamBarLeft.bottom;
    
 //Dimensions barAxis (Y)
 var marginBarAxis = { top: 10, right: 50, bottom: 30, left: 50 },
-    widthBarAxis = 650 - marginBarAxis.left - marginBarAxis.right,
+    widthBarAxis = 200 - marginBarAxis.left - marginBarAxis.right,
     heightBarAxis = 600 - marginBarAxis.top - marginBarAxis.bottom;
 
 //Dimensions for the Piechart    
@@ -25,12 +25,12 @@ var widthPie = 250
 
 // append the svg object to the body of the page
 var genralInfoCanvasLeft = d3
-  .select("#team-statistics-left")
+  .select("#team-flag-left")
   .append("svg")
   .attr("width", widthInfosLeft + marginInfosLeft.left + marginInfosLeft.right)
   .attr("height", heightInfosLeft + marginInfosLeft.top + marginInfosLeft.bottom)
   .append("g")
-  .attr("transform", "translate(" + marginTeamBarLeft.left + "," + marginTeamBarLeft.top + ")");
+  .attr("transform", "translate(" + marginInfosLeft.left + "," + marginInfosLeft.top + ")");
 
 var teamBarChartCanvasLeft = d3
   .select("#team-barchart-left")
@@ -39,6 +39,14 @@ var teamBarChartCanvasLeft = d3
   .attr("height", heightTeamBarLeft + marginTeamBarLeft.top + marginTeamBarLeft.bottom)
   .append("g")
   .attr("transform", "translate(" + marginTeamBarLeft.left + "," + marginTeamBarLeft.top + ")");
+
+var teamBarChartAxis = d3
+  .select("#team-barchart-axis")
+  .append("svg")
+  .attr("width", widthBarAxis + marginBarAxis.left + marginBarAxis.right)
+  .attr("height", heightBarAxis + marginBarAxis.top + marginBarAxis.bottom)
+  .append("g")
+  .attr("transform", "translate(" + marginBarAxis.left + "," + marginBarAxis.top + ")");
 
   var possessionPieCanvasLeft = d3.select("#possession-pie-left")
   .append("svg")
@@ -96,13 +104,10 @@ Promise.all([
     .append("image")
     .data(data)
     .attr("id", "flag-left")
-    .attr("y", 40)
-    .attr("x", 0)
     .attr("xlink:href", function(d) {
       return data[0][indexLeft]["flag"];
     })
-    .attr("height", 110);
-  d3.select("#flag-left").style('transform', 'translate(14%, 0)')
+    .attr("width", 100);
 
 
   d3.select("#final-placement-left")
@@ -120,7 +125,7 @@ Promise.all([
     // .attr("y", 200)
     // .attr("x", 0)
     .text(function(d) {
-      return "Market value: " + (data[0][indexLeft]["market_value"] + " Million €");
+      return (data[0][indexLeft]["market_value"] + " Million €");
     });
 
   /* Bar Chart */
@@ -146,10 +151,7 @@ Promise.all([
     .attr("transform", "translate( " + widthTeamBarLeft + ", 0 )")
     .attr("dx", ".75em")
     .call(d3.axisRight(y).tickSize([0]))
-    .selectAll("text")
-    .attr("transform", "translate(30,0)")
-    .style("font-size", 20)
-    .style("font-weight", "bold");
+    
 
   //Bars
   teamBarChartCanvasLeft.selectAll("bar")
@@ -161,6 +163,30 @@ Promise.all([
     .attr("width", function(d) {return widthTeamBarLeft - x(d.value);})
     .attr("height", y.bandwidth())
     .attr("fill", data[0][indexLeft]["color"]);
+
+  //Bar Axis
+  teamBarChartAxis.selectAll("axislabels")
+    .data([ "Matches played",
+            "Goals scored",
+            "Goals against",
+            "Shots",
+            "Shots on target",
+            "Penalties",
+            "Offsides",
+            "Corners",
+            "Fouls committed",
+            "Fouls suffered",
+            "Yellow cards",
+            "Red cards"])
+    .enter()
+    .append("text")
+    .attr("x", 48)
+    .attr("y", function(d,i){ return 27 + i*46.25})
+    .text(function(d){ return d})
+    .attr("text-anchor", "middle")
+    .style("alignment-baseline", "middle")
+    .style("font-size", 20)
+    .style("font-weight", "bold");
 
   //Bar Label
   teamBarChartCanvasLeft.selectAll(".text")  		
@@ -224,7 +250,7 @@ function arcTweenLeft(newAngle, newText, newColor) {
       .attr("xlink:href", function(d) {
         return generalInfoDataFilterLeft[0]["flag"];
       })
-      .attr("height", 110);
+      .attr("width", 100);
 
     d3.select("#final-placement-left")
       .data(data)
@@ -237,7 +263,7 @@ function arcTweenLeft(newAngle, newText, newColor) {
     d3.select("#market-value-left")
       .data(data)
       .text(function(d) {
-        return "Market value: " + (generalInfoDataFilterLeft[0]["market_value"] + " Million €");
+        return (generalInfoDataFilterLeft[0]["market_value"] + " Million €");
       });
 
     // Create new barChart data with selection

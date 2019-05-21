@@ -1,7 +1,7 @@
 
-var marginInfosRight = { top: 10, right: 100, bottom: 30, left: 30 },
-    widthInfosRight = 400 - marginInfosRight.left - marginInfosRight.right,
-    heightInfosRight = 200 - marginInfosRight.top - marginInfosRight.bottom;
+var marginInfosRight = { top: 0, right: 0, bottom: 0, left: 0 },
+    widthInfosRight = 100 - marginInfosRight.left - marginInfosRight.right,
+    heightInfosRight = 50 - marginInfosRight.top - marginInfosRight.bottom;
 
 // set the dimensions and margins of the graph
 var marginTeamBarRight = { top: 10, right: 30, bottom: 30, left: 0 },
@@ -10,12 +10,12 @@ var marginTeamBarRight = { top: 10, right: 30, bottom: 30, left: 0 },
 
 // append the svg object to the body of the page
 var genralInfoCanvasRight = d3
-  .select("#team-statistics-right")
+  .select("#team-flag-right")
   .append("svg")
   .attr("width", widthInfosRight + marginInfosRight.left + marginInfosRight.right)
   .attr("height", heightInfosRight + marginInfosRight.top + marginInfosRight.bottom)
   .append("g")
-  .attr("transform", "translate(" + marginTeamBarRight.left + "," + marginTeamBarRight.top + ")");
+  .attr("transform", "translate(" + marginInfosRight.left + "," + marginInfosRight.top + ")");
 
 var teamBarChartCanvasRight = d3
   .select("#team-barchart-right")
@@ -81,13 +81,10 @@ Promise.all([
     .append("image")
     .data(data)
     .attr("id", "flag-right")
-    .attr("y", 40)
-    .attr("x", 0)
     .attr("xlink:href", function(d) {
       return data[0][indexRight]["flag"];
     })
-    .attr("height", 110);
-  d3.select("#flag-right").style('transform', 'translate(22%, 0)')
+    .attr("width", 100);
 
 d3.select("#final-placement-right")
   .append("text")
@@ -100,7 +97,7 @@ d3.select("#market-value-right")
   .append("text")
   .data(data)
   .text(function(d) {
-    return "Market value: " + (data[0][indexRight]["market_value"] + " Million €");
+    return (data[0][indexRight]["market_value"] + " Million €");
   });
 
   /* Bar Chart */
@@ -199,7 +196,7 @@ function arcTweenRight(newAngle, newText, newColor) {
       .attr("xlink:href", function(d) {
         return generalInfoDataFilterRight[0]["flag"];
       })
-      .attr("height", 110);
+      .attr("width", 100);
 
     d3.select("#final-placement-right")
       .data(data)
@@ -212,7 +209,7 @@ function arcTweenRight(newAngle, newText, newColor) {
     d3.select("#market-value-right")
       .data(data)
       .text(function(d) {
-        return "Market value: " + (generalInfoDataFilterRight[0]["market_value"] + " Million €");
+        return (generalInfoDataFilterRight[0]["market_value"] + " Million €");
       });
 
     // Create new barChart data with selection
