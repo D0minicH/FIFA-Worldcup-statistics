@@ -11,98 +11,119 @@
 <body>
   <header>
     <div class="page-header">
-      <img src="images\worldcup_2018_logo.png" alt="World Cup 2018 Logo">
-      <h1 class="page">Statistics</h1>
+      <img src="images/worldcup-2018-logo.svg" alt="World Cup 2018 Logo" style="height: 85%">
+      <h1>2018 FIFA World Cup Russia - Statistics</h1>
     </div>
   </header>
-  <div id="navbar">
+  <nav id="navbar">
     <div class="nav-select-left">
       <div id="team-flag-left"></div>
       <select id="select-team-button-left"></select>
+    </div>
+    <div class="page-links">
+      <a href="#team-comparisons">Teams</a>
+      <a href="#players">Players</a>
+      <a href="#overall">Overall Statistics</a>
     </div>
     <div class="nav-select-right">
       <select id="select-team-button-right"></select>
       <div id="team-flag-right"></div>
     </div>
-  </div>
+  </nav>
   <div class="spacing"></div>
-  <div class="section-card">
-    <div class="stats">
-      <div class="stats-title">
-        <h1>Team Comparisons</h1>
-      </div>
-      <div class="left-half">
-        <div class="cardgroup">
-          <div class="card">
-            <div class="card-container">
-              <p class="card-title">Final placement</p>
-              <p id="final-placement-left"></p>
+  <div id="team-comparisons">
+    <div class="section-card">
+      <div class="section">
+        <div class="section-title">
+          <h1>Team Comparisons</h1>
+        </div>
+        <div class="left-half">
+          <div class="cardgroup">
+            <div id="team-logo-left"></div>
+            <div class="card">
+              <div class="card-container">
+                <p class="card-title">Final placement</p>
+                <p id="final-placement-left"></p>
+              </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-container">
-              <p class="card-title">Market Value</p>
-              <p id="market-value-left"></p>
+            <div class="card">
+              <div class="card-container">
+                <p class="card-title">Market Value</p>
+                <p id="market-value-left"></p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="right-half">
-        <div class="cardgroup">
-          <div class="card">
-            <div class="card-container">
-              <p class="card-title">Market Value</p>
-              <p id="market-value-right"></p>
+        <div class="right-half">
+          <div class="cardgroup">
+            <div class="card">
+              <div class="card-container">
+                <p class="card-title">Market Value</p>
+                <p id="market-value-right"></p>
+              </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-container">
-              <p class="card-title">Final placement</p>
-              <p id="final-placement-right"></p>
+            <div class="card">
+              <div class="card-container">
+                <p class="card-title">Final placement</p>
+                <p id="final-placement-right"></p>
+              </div>
             </div>
+            <div id="team-logo-right"></div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="team-barchart">
-      <div id="team-barchart-left"></div>
-      <div id="team-barchart-axis"></div>
-      <div id="team-barchart-right"></div>
-    </div>
-    <div class="possession-pie">
-      <div id="possession-pie-left"></div>
-      <div id="possesion-title">
-        <h3>Average ball<br>possession</h3>
+      <div class="team-barchart">
+        <div id="team-barchart-left"></div>
+        <div id="team-barchart-axis"></div>
+        <div id="team-barchart-right"></div>
       </div>
-      <div id="possession-pie-right"></div>
+      <div class="possession-pie">
+        <div id="possession-pie-left"></div>
+        <div id="possesion-title">
+          <h3>Average ball<br>possession</h3>
+        </div>
+        <div id="possession-pie-right"></div>
+      </div>
     </div>
-  </div>
-  <!-- <div id="container">
+    <!-- <div id="container">
     <div id="tournament-tree">
       <div id="labels"></div>
     </div>
   </div> -->
-  <div class="spacing"></div>
-  <div class="section-card">
-    <div class="stats">
-      <div class="stats-title">
-        <h1>Players</h1>
+  </div>
+  <div id="players">
+    <div class="spacing"></div>
+    <div class="section-card">
+      <div class="section">
+        <div class="section-title">
+          <h1>Players</h1>
+        </div>
+        <div class="left-half">
+          <img class="player-image" src="https://cdn.sofifa.org/players/10/19/177683.png">
+          <p>Yann Sommer</p>
+        </div>
+        <div class="right-half">
+          <img class="player-image" src="https://cdn.sofifa.org/players/10/19/231747.png">
+          <p>Kylian Mbappé</p>
+        </div>
       </div>
-      <div class="left-half">
-        <img class="player-image" src="https://cdn.sofifa.org/players/10/19/177683.png">
-        <p>Yann Sommer</p>
-      </div>
-      <div class="right-half">
-        <img class="player-image" src="https://cdn.sofifa.org/players/10/19/231747.png">
-        <p>Kylian Mbappé</p>
+
+      <div id="player-stats-appearances"></div>
+      <div id="player-stats-minutes"></div>
+      <div id="player-stats-goals"></div>
+      <div id="player-stats-rating"></div>
+      <div id="player-stats-caps"></div>
+    </div>
+  </div>
+  <div id="overall">
+    <div class="spacing"></div>
+    <div class="section-card">
+      <div class="section">
+        <div class="section-title">
+          <h1>Overall</h1>
+        </div>
       </div>
     </div>
-
-    <div id="player-stats-appearances"></div>
-    <div id="player-stats-minutes"></div>
-    <div id="player-stats-goals"></div>
-    <div id="player-stats-rating"></div>
-    <div id="player-stats-caps"></div>
   </div>
 
 
@@ -131,6 +152,14 @@
         navbar.classList.remove("sticky");
       }
     }
+
+    $("nav").find("a").click(function (e) {
+      e.preventDefault();
+      var section = $(this).attr("href");
+      $("html, body").animate({
+        scrollTop: $(section).offset().top
+      });
+    });
   </script>
 
 </body>

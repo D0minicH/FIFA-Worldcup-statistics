@@ -1,7 +1,11 @@
 
-var marginInfosLeft = { top: 0, right: 0, bottom: 0, left: 0 },
-    widthInfosLeft = 100 - marginInfosLeft.left - marginInfosLeft.right,
-    heightInfosLeft = 50 - marginInfosLeft.top - marginInfosLeft.bottom;
+var marginFlagLeft = { top: 0, right: 0, bottom: 0, left: 0 },
+    widthFlagLeft = 100 - marginFlagLeft.left - marginFlagLeft.right,
+    heightFlagLeft = 50 - marginFlagLeft.top - marginFlagLeft.bottom;
+
+var marginLogoLeft = { top: 0, right: 0, bottom: 0, left: 0 },
+    widthLogoLeft = 80 - marginLogoLeft.left - marginLogoLeft.right,
+    heightLogoLeft = 50 - marginLogoLeft.top - marginLogoLeft.bottom;
 
 //Dimensions and margins Bar Chart
 var marginTeamBarLeft = { top: 10, right: 0, bottom: 30, left: 30 },
@@ -23,14 +27,21 @@ var widthPie = 250
     total = 100,
     formatPercent = d3.format(".0%");
 
-// append the svg object to the body of the page
-var genralInfoCanvasLeft = d3
+var flagCanvasLeft = d3
   .select("#team-flag-left")
   .append("svg")
-  .attr("width", widthInfosLeft + marginInfosLeft.left + marginInfosLeft.right)
-  .attr("height", heightInfosLeft + marginInfosLeft.top + marginInfosLeft.bottom)
+  .attr("width", widthFlagLeft + marginFlagLeft.left + marginFlagLeft.right)
+  .attr("height", heightFlagLeft + marginFlagLeft.top + marginFlagLeft.bottom)
   .append("g")
-  .attr("transform", "translate(" + marginInfosLeft.left + "," + marginInfosLeft.top + ")");
+  .attr("transform", "translate(" + marginFlagLeft.left + "," + marginFlagLeft.top + ")");
+
+var logoCanvasLeft = d3
+  .select("#team-logo-left")
+  .append("svg")
+  .attr("width", widthLogoLeft + marginLogoLeft.left + marginLogoLeft.right)
+  .attr("height", widthLogoLeft + marginLogoLeft.top + marginLogoLeft.bottom)
+  .append("g")
+  .attr("transform", "translate(" + marginLogoLeft.left + "," + marginLogoLeft.top + ")");
 
 var teamBarChartCanvasLeft = d3
   .select("#team-barchart-left")
@@ -100,7 +111,7 @@ Promise.all([
   // console.log(index);
 
   //Flag
-  genralInfoCanvasLeft
+  flagCanvasLeft
     .append("image")
     .data(data)
     .attr("id", "flag-left")
@@ -108,6 +119,16 @@ Promise.all([
       return data[0][indexLeft]["flag"];
     })
     .attr("width", 100);
+
+  //Logo
+  logoCanvasLeft
+    .append("image")
+    .data(data)
+    .attr("id", "logo-left")
+    .attr("xlink:href", function(d) {
+      return data[0][indexLeft]["team-logo"];
+    })
+    .attr("height", 80);
 
 
   d3.select("#final-placement-left")
@@ -196,6 +217,7 @@ Promise.all([
     .attr("class","label")
     .attr("x", (function(d) { return x(d.value) - 25;  }  ))
     .attr("y", function(d) { return y(d.category) + 14; })
+    .attr("font-family","dusha")
     .style("font-weight", "bold")
     .attr("dy", ".75em")
     .text(function(d) { return d.value; });   	
@@ -219,7 +241,8 @@ var progressPieLeft = possessionPieCanvasLeft.append("path")
 
 var progressTextLeft = possessionPieCanvasLeft.append("text")
     .attr("class","percentage")
-	  .attr("text-anchor", "middle")
+    .attr("text-anchor", "middle")
+    .attr("font-family","dusha")
     .attr('font-size', '2.5em')
     .attr('x',10)
 		.attr('y', 20)
@@ -251,6 +274,16 @@ function arcTweenLeft(newAngle, newText, newColor) {
         return generalInfoDataFilterLeft[0]["flag"];
       })
       .attr("width", 100);
+
+    //Logo
+    d3.selectAll("#logo-left")
+    .data(generalInfoDataFilterLeft)
+    .attr("id", "logo-left")
+    .attr("xlink:href", function(d) {
+      return generalInfoDataFilterLeft[0]["team-logo"];
+    })
+    .attr("height", 80);
+
 
     d3.select("#final-placement-left")
       .data(data)
@@ -302,7 +335,7 @@ function arcTweenLeft(newAngle, newText, newColor) {
         .attr("dy", ".75em")
         .text(function(d) { return d.value; });   
 
-//udate Progress Pie Chart
+//update Progress Pie Chart
   progressPieLeft.transition()
       .attr("fill", generalInfoDataFilterLeft[0]["color"])
       .duration(1000)

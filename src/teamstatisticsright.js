@@ -1,21 +1,32 @@
 
-var marginInfosRight = { top: 0, right: 0, bottom: 0, left: 0 },
-    widthInfosRight = 100 - marginInfosRight.left - marginInfosRight.right,
-    heightInfosRight = 50 - marginInfosRight.top - marginInfosRight.bottom;
+var marginFlagRight = { top: 0, right: 0, bottom: 0, left: 0 },
+    widthFlagRight = 100 - marginFlagRight.left - marginFlagRight.right,
+    heightFlagRight = 50 - marginFlagRight.top - marginFlagRight.bottom;
+
+var marginLogoRight = { top: 0, right: 0, bottom: 0, left: 0 },
+    widthLogoRight = 80 - marginLogoRight.left - marginLogoRight.right,
+    heightLogoRight = 50 - marginLogoRight.top - marginLogoRight.bottom;
 
 // set the dimensions and margins of the graph
 var marginTeamBarRight = { top: 10, right: 30, bottom: 30, left: 0 },
     widthTeamBarRight = 450 - marginTeamBarRight.left - marginTeamBarRight.right,
     heightTeamBarRight = 600 - marginTeamBarRight.top - marginTeamBarRight.bottom;
 
-// append the svg object to the body of the page
-var genralInfoCanvasRight = d3
+var flagCanvasRight = d3
   .select("#team-flag-right")
   .append("svg")
-  .attr("width", widthInfosRight + marginInfosRight.left + marginInfosRight.right)
-  .attr("height", heightInfosRight + marginInfosRight.top + marginInfosRight.bottom)
+  .attr("width", widthFlagRight + marginFlagRight.left + marginFlagRight.right)
+  .attr("height", heightFlagRight + marginFlagRight.top + marginFlagRight.bottom)
   .append("g")
-  .attr("transform", "translate(" + marginInfosRight.left + "," + marginInfosRight.top + ")");
+  .attr("transform", "translate(" + marginFlagRight.left + "," + marginFlagRight.top + ")");
+
+var logoCanvasRight = d3
+  .select("#team-logo-right")
+  .append("svg")
+  .attr("width", widthLogoRight + marginLogoRight.left + marginLogoRight.right)
+  .attr("height", widthLogoRight + marginLogoRight.top + marginLogoRight.bottom)
+  .append("g")
+  .attr("transform", "translate(" + marginLogoRight.left + "," + marginLogoRight.top + ")");
 
 var teamBarChartCanvasRight = d3
   .select("#team-barchart-right")
@@ -77,7 +88,7 @@ Promise.all([
   // console.log(index);
 
   //Flag
-  genralInfoCanvasRight
+  flagCanvasRight
     .append("image")
     .data(data)
     .attr("id", "flag-right")
@@ -86,6 +97,16 @@ Promise.all([
     })
     .attr("width", 100);
 
+  //Logo
+  logoCanvasRight
+    .append("image")
+    .data(data)
+    .attr("id", "logo-right")
+    .attr("xlink:href", function(d) {
+      return data[0][indexRight]["team-logo"];
+    })
+    .attr("height", 80);
+    
 d3.select("#final-placement-right")
   .append("text")
   .data(data)
@@ -142,6 +163,7 @@ d3.select("#market-value-right")
     .attr("class","label")
     .attr("x", (function(d) { return x(d.value) + 10;}))
     .attr("y", function(d) { return y(d.category) + 14; })
+    .attr("font-family","dusha")
     .style("font-weight", "bold")
     .attr("dy", ".75em")
     .text(function(d) { return d.value; });   
@@ -165,7 +187,8 @@ var progressPieRight = possessionPieCanvasRight.append("path")
 
 var progressTexRight = possessionPieCanvasRight.append("text")
     .attr("class","percentage")
-	  .attr("text-anchor", "middle")
+    .attr("text-anchor", "middle")
+    .attr("font-family","dusha")
     .attr('font-size', '2.5em')
     .attr('x',10)
 		.attr('y', 20)
@@ -197,6 +220,15 @@ function arcTweenRight(newAngle, newText, newColor) {
         return generalInfoDataFilterRight[0]["flag"];
       })
       .attr("width", 100);
+
+    //Logo
+    d3.selectAll("#logo-right")
+      .data(generalInfoDataFilterRight)
+      .attr("id", "logo-right")
+      .attr("xlink:href", function(d) {
+        return generalInfoDataFilterRight[0]["team-logo"];
+      })
+      .attr("height", 80);
 
     d3.select("#final-placement-right")
       .data(data)
@@ -248,7 +280,7 @@ function arcTweenRight(newAngle, newText, newColor) {
         .attr("dy", ".75em")
         .text(function(d) { return d.value; });   
   
-  //udate Progress Pie Chart
+  //update Progress Pie Chart
   progressPieRight.transition()
       .attr("fill", generalInfoDataFilterRight[0]["color"])
       .duration(1000)

@@ -1,8 +1,19 @@
 
+@font-face {
+  font-family: dusha;
+  src: url(../fonts/Dusha.ttf);
+}
+
 body {
   font-family: "Open Sans script = all rev=1", sans-serif;
+  /* font-family: dusha; */
   background-image: url("../images/blue-wc-2018-background.jpg");
   background-size:100%;
+}
+
+h1   {
+  font-family: dusha;
+  font-weight: normal; 
 }
 
 .page-header {
@@ -11,17 +22,17 @@ body {
   margin-left: 20%;
   margin-right: 20%;
   height: 10vh;
-  display: -webkit-flexbox;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   -webkit-flex-align: center;
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: #CB0C14;
   border-radius: 30px;
+  border-style: solid;
+  border-width: 4px;
+  border-color: #E5C685;
 }
 
 .page-header img {
@@ -30,8 +41,7 @@ body {
 }
 
 .page-header h1 {
-  padding-left: 15px;
-  font-size: 6vh;
+  color: white;
 }
 
 /* Navbar */
@@ -42,7 +52,7 @@ body {
 }
 
 .sticky + .stats {
-  padding-top: 4.9%;
+  /* padding-top: 4.9%; */
 }
 
 /*Custom Select Button*/
@@ -59,6 +69,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-self: end;
+}
+
+.page-links{
+  width: 100%;
+  grid-area: page-links;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-links a {
+  padding: 1%;
+  font-family: dusha;
+  color: white;
+  font-size: 1.3rem
 }
 
 .nav-select-right{
@@ -66,9 +95,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-self: start;
 }
 
-#navbar {
+nav {
   margin-left: -12px; 
   margin-right: -8px; 
   padding-top: 1%;
@@ -81,10 +111,10 @@ body {
   border-color: #E5C685;
   display: grid;
   justify-items: center;
-  grid-template-columns: 50 50;
+  grid-template-columns: 45 10 45;
   grid-template-rows: auto;
   grid-template-areas:
-    "left-select right-select";
+    "left-select page-links right-select";
 }
 
 .spacing{
@@ -107,9 +137,24 @@ body {
 
 /*Team statistics*/
 /* Grid */
-.stats-title {
+.section-title {
   text-align: center;
   grid-area: title;
+  width: 35%;
+  background: #CB0C14;
+  border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-style: solid;
+  border-top: none; 
+  border-width: 4px;
+  border-color: #E5C685;
+  margin-bottom: 3%;
+}
+
+.section-title h1{
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+  color: white;
 }
 .left-half {
   grid-area: left-stats;
@@ -121,7 +166,7 @@ body {
   width: 100%;
 }
 
-.stats {
+.section {
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 5%;
@@ -133,6 +178,13 @@ body {
     "title title"
     "left-stats right-stats";}
 /* Grid --end*/
+
+#team-logo-left{
+  margin-top: 1%;
+}
+#team-logo-right{
+  margin-top: 1%;
+}
 
 .cardgroup{
   display: flex;
