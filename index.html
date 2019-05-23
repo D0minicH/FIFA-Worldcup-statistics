@@ -123,6 +123,11 @@
           <h1>Overall</h1>
         </div>
       </div>
+      <div class="overall-content-centered">
+        <select id="select-overall-team-button"></select>
+        <div id="overall-team-barchart"></div>
+      </div>
+
     </div>
   </div>
 
@@ -137,6 +142,7 @@
   <script src='./src/player_goals.js'></script>
   <script src='./src/player_rating.js'></script>
   <script src='./src/player_caps.js'></script>
+  <script src="./src/overallteambarchart.js"></script>
 
   <!-- Sticky Header -->
   <script>
@@ -153,13 +159,6 @@
       }
     }
 
-    $("nav").find("a").click(function (e) {
-      e.preventDefault();
-      var section = $(this).attr("href");
-      $("html, body").animate({
-        scrollTop: $(section).offset().top
-      });
-    });
   </script>
 
 </body>

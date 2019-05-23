@@ -83,8 +83,8 @@ var teamCategories = [
 
 //Read the data
 Promise.all([
-  d3.csv("/data/wc_teams_infos.csv"),
-  d3.csv("/data/wc_team_stats.csv")
+  d3.csv("./data/wc_teams_infos.csv"),
+  d3.csv("./data/wc_team_stats.csv")
 ]).then(function(data) {
   console.log(data[0][0])
   console.log(data[1][0])
@@ -118,7 +118,8 @@ Promise.all([
     .attr("xlink:href", function(d) {
       return data[0][indexLeft]["flag"];
     })
-    .attr("width", 100);
+    .attr("width", 100)
+    .attr("height", 50);
 
   //Logo
   logoCanvasLeft
@@ -128,8 +129,8 @@ Promise.all([
     .attr("xlink:href", function(d) {
       return data[0][indexLeft]["team-logo"];
     })
-    .attr("height", 80);
-
+    .attr("height", 80)
+    .attr("width", 80);
 
   d3.select("#final-placement-left")
     .append("text")
@@ -265,6 +266,7 @@ function arcTweenLeft(newAngle, newText, newColor) {
 
     // Create new generalInfo data with selection
     var generalInfoDataFilterLeft = data[0].filter(function(d){return d.country==selectedGroupLeft})
+    console.log("test: " + generalInfoDataFilterLeft)
 
     //Flag
     d3.selectAll("#flag-left")
@@ -273,7 +275,8 @@ function arcTweenLeft(newAngle, newText, newColor) {
       .attr("xlink:href", function(d) {
         return generalInfoDataFilterLeft[0]["flag"];
       })
-      .attr("width", 100);
+      .attr("width", 100)
+      .attr("height", 50);
 
     //Logo
     d3.selectAll("#logo-left")
@@ -282,7 +285,8 @@ function arcTweenLeft(newAngle, newText, newColor) {
     .attr("xlink:href", function(d) {
       return generalInfoDataFilterLeft[0]["team-logo"];
     })
-    .attr("height", 80);
+    .attr("height", 80)
+    .attr("width", 80);
 
 
     d3.select("#final-placement-left")
