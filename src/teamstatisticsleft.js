@@ -135,8 +135,6 @@ Promise.all([
   d3.select("#final-placement-left")
     .append("text")
     .data(data)
-    // .attr("y", 200)
-    // .attr("x", 0)
     .text(function(d) {
       return data[0][indexLeft]["final_placement"];
     });
@@ -144,8 +142,6 @@ Promise.all([
   d3.select("#market-value-left")
     .append("text")
     .data(data)
-    // .attr("y", 200)
-    // .attr("x", 0)
     .text(function(d) {
       return (data[0][indexLeft]["market_value"] + " Million €");
     });
@@ -186,7 +182,20 @@ Promise.all([
     .attr("height", y.bandwidth())
     .attr("fill", data[0][indexLeft]["color"]);
 
-  //Bar Axis
+  //Bar Label
+  teamBarChartCanvasLeft.selectAll(".text")  		
+    .data(data[1].filter(function(d){return d.country==allteamsLeft[0]}))
+    .enter()
+    .append("text")
+    .attr("class","label")
+    .attr("x", (function(d) { return x(d.value) - 25;  }  ))
+    .attr("y", function(d) { return y(d.category) + 14; })
+    .attr("font-family","dusha")
+    .style("font-weight", "bold")
+    .attr("dy", ".75em")
+    .text(function(d) { return d.value; });   
+    
+ //Bar Axis
   teamBarChartAxis.selectAll("axislabels")
     .data([ "Matches played",
             "Goals scored",
@@ -209,19 +218,6 @@ Promise.all([
     .style("alignment-baseline", "middle")
     .style("font-size", 20)
     .style("font-weight", "bold");
-
-  //Bar Label
-  teamBarChartCanvasLeft.selectAll(".text")  		
-    .data(data[1].filter(function(d){return d.country==allteamsLeft[0]}))
-    .enter()
-    .append("text")
-    .attr("class","label")
-    .attr("x", (function(d) { return x(d.value) - 25;  }  ))
-    .attr("y", function(d) { return y(d.category) + 14; })
-    .attr("font-family","dusha")
-    .style("font-weight", "bold")
-    .attr("dy", ".75em")
-    .text(function(d) { return d.value; });   	
 
 //Progress Pie Chart
   var arc = d3.arc()

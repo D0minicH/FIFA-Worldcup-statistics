@@ -1,5 +1,5 @@
 //Dimensions and margins Bar Chart
-var marginOverallTeamBar = { top: 10, right: 10, bottom: 60, left: 50 },
+var marginOverallTeamBar = { top: 50, right: 30, bottom: 60, left: 50 },
   widthOverallTeamBar = 1100 - marginOverallTeamBar.left - marginOverallTeamBar.right,
   heightOverallTeamBar = 400 - marginOverallTeamBar.top - marginOverallTeamBar.bottom;
 
@@ -12,7 +12,7 @@ var overallTeamBarChartCanvas = d3
   .attr("transform","translate(" + marginOverallTeamBar.left + "," + marginOverallTeamBar.top + ")"
   );
 
-  var customDropDownOptions = ["Market Values", "Average Age", "Number of World Cup Participations", "Percent of players who play abroad", "Goals scored", "Goals against", "Shots Total", "Shots on Target", "Penalties", "Offsides", "Corners", "Fouls commited", "Fouls suffered", "Yellow Cards", "Red Cards"]
+  var customDropDownOptions = ["Market Values in Million €", "Average Age", "Number of World Cup Participations", "Percent of players who play abroad", "Goals scored", "Goals against", "Shots Total", "Shots on Target", "Penalties", "Offsides", "Corners", "Fouls commited", "Fouls suffered", "Yellow Cards", "Red Cards"]
   var dropdownOptions = ["market_value","ø-age","wc_particip","abroad_percent","goals_scored","goals_against","shots","shots_on_target","penalties","offsides","corners","fouls_committed","fouls_suffered","yellow_cards","red_cards"]
 
   function formatSelectedOption(selectedOption){
@@ -86,14 +86,31 @@ var yAxis = overallTeamBarChartCanvas.append("g")
         .append("rect")
         .merge(updateBar)
         .transition()
-        .duration(1000)
-          .attr("x", function(d) { return x(d.country); })
-          .attr("y", function(d) { return y(d[selectedOption]); })
-          .attr("width", x.bandwidth())
-          .attr("height", function(d) { return heightOverallTeamBar - y(d[selectedOption]); })
-          .attr("fill", function(d){return colorScale(d.country) })  
+          .duration(1000)
+            .attr("x", function(d) { return x(d.country); })
+            .attr("y", function(d) { return y(d[selectedOption]); })
+            .attr("width", x.bandwidth())
+            .attr("height", function(d) { return heightOverallTeamBar - y(d[selectedOption]); })
+            .attr("fill", function(d){return colorScale(d.country) })  
+      
+      //update image labels
+      var updateBarImage = overallTeamBarChartCanvas.selectAll("image")
+          .data(data)
+        
+      updateBarImage.exit().remove();
+
+      updateBarImage.enter()
+          .append("image")
+          .merge(updateBarImage)
+          .transition()
+            .duration(1000)
+              .attr("x", function(d) { return x(d.country); })
+              .attr("y", function(d) { return y(d[selectedOption]) - 15; })
+              .attr("xlink:href",function(d) {return d.flag})
+              .attr("height", 12.5)
+              .attr("width", 25);
     }
-    
+
     //initialize plot
     updateOverallTeamBarChart('market_value')
     

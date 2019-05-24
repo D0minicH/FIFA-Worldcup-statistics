@@ -266,6 +266,10 @@ nav {
   align-items: center;
 }
 
+#select-overall-team-button{
+  margin-bottom: 5%;
+}
+
 /*Tournament Table*/
 .link {
   fill: none;

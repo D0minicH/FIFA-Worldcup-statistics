@@ -60,8 +60,8 @@ var teamCategories = [
 
 //Read the data
 Promise.all([
-  d3.csv("/data/wc_teams_infos.csv"),
-  d3.csv("/data/wc_team_stats.csv")
+  d3.csv("./data/wc_teams_infos.csv"),
+  d3.csv("./data/wc_team_stats.csv")
 ]).then(function(data) {
 
   // //map with all team names
