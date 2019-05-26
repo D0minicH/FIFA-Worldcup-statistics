@@ -9,7 +9,7 @@ var marginLogoRight = { top: 0, right: 0, bottom: 0, left: 0 },
 
 // set the dimensions and margins of the graph
 var marginTeamBarRight = { top: 10, right: 30, bottom: 30, left: 0 },
-    widthTeamBarRight = 450 - marginTeamBarRight.left - marginTeamBarRight.right,
+    widthTeamBarRight = 400 - marginTeamBarRight.left - marginTeamBarRight.right,
     heightTeamBarRight = 600 - marginTeamBarRight.top - marginTeamBarRight.bottom;
 
 var flagCanvasRight = d3

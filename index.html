@@ -30,120 +30,146 @@
       <div id="team-flag-right"></div>
     </div>
   </nav>
-  <div class="spacing"></div>
-  <div id="team-comparisons">
-    <div class="section-card">
-      <div class="section">
-        <div class="section-title">
-          <h1>Team Comparisons</h1>
-        </div>
-        <div class="left-half">
-          <div class="cardgroup">
-            <div id="team-logo-left"></div>
-            <div class="card">
-              <div class="card-container">
-                <p class="card-title">Final placement</p>
-                <p id="final-placement-left"></p>
+  <div class="main-content">
+    <div class="spacing"></div>
+    <div id="team-comparisons">
+      <div class="section-card">
+        <div class="section">
+          <div class="section-title">
+            <h1>Team Comparisons</h1>
+          </div>
+          <div class="left-half">
+            <div class="cardgroup">
+              <div id="team-logo-left"></div>
+              <div class="card">
+                <div class="card-container">
+                  <p class="card-title">Final placement</p>
+                  <p id="final-placement-left"></p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-container">
+                  <p class="card-title">Market Value</p>
+                  <p id="market-value-left"></p>
+                </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-container">
-                <p class="card-title">Market Value</p>
-                <p id="market-value-left"></p>
+          </div>
+          <div class="right-half">
+            <div class="cardgroup">
+              <div class="card">
+                <div class="card-container">
+                  <p class="card-title">Market Value</p>
+                  <p id="market-value-right"></p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-container">
+                  <p class="card-title">Final placement</p>
+                  <p id="final-placement-right"></p>
+                </div>
+              </div>
+              <div id="team-logo-right"></div>
+            </div>
+          </div>
+        </div>
+        <div class="team-barchart">
+          <div id="team-barchart-left"></div>
+          <div id="team-barchart-axis"></div>
+          <div id="team-barchart-right"></div>
+        </div>
+        <div class="possession-pie">
+          <div id="possession-pie-left"></div>
+          <div id="possesion-title">
+            <h3>Average ball<br>possession</h3>
+          </div>
+          <div id="possession-pie-right"></div>
+        </div>
+      </div>
+    </div>
+    <div id="players">
+      <div class="spacing"></div>
+      <div class="section-card">
+        <div class="section">
+          <div class="section-title">
+            <h1>Players</h1>
+          </div>
+          <div class="left-half">
+            <div class="player-select">
+              <p id="select-test"></p>
+              <select id="select-player-button-left"></select>
+            </div>
+            <div class="player">
+              <div id="player-image-left">
+                <img class="player-image" src="https://cdn.sofifa.org/players/10/19/177683.png">
+                <p>Yann Sommer</p>
+              </div>
+            </div>
+          </div>
+          <div class="right-half">
+            <div class="player-select">
+              <select id="select-player-button-right"></select>
+            </div>
+            <div class="player">
+              <div id="player-image-right">
+                <img class="player-image" src="https://cdn.sofifa.org/players/10/19/231747.png">
+                <p>Kylian Mbappé</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="right-half">
-          <div class="cardgroup">
-            <div class="card">
-              <div class="card-container">
-                <p class="card-title">Market Value</p>
-                <p id="market-value-right"></p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-container">
-                <p class="card-title">Final placement</p>
-                <p id="final-placement-right"></p>
-              </div>
-            </div>
-            <div id="team-logo-right"></div>
+
+        <div id="player-stats-appearances"></div>
+        <div id="player-stats-minutes"></div>
+        <div id="player-stats-goals"></div>
+        <div id="player-stats-rating"></div>
+        <div id="player-stats-caps"></div>
+      </div>
+    </div>
+    <div id="overall">
+      <div class="spacing"></div>
+      <div class="section-card">
+        <div class="section">
+          <div class="section-title">
+            <h1>Overall</h1>
+          </div>
+        </div>
+        <div class="content-centered">
+          <select id="select-overall-team-button"></select>
+          <div id="overall-team-barchart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="spacing"></div>
+    <div class="section-card">
+      <div class="section">
+        <div class="section-title">
+          <h1>Tournament tree</h1>
+        </div>
+      </div>
+      <div class="content-centered">
+        <div id="tournamenttree-container">
+          <div id="tournament-tree">
+            <div id="labels"></div>
           </div>
         </div>
       </div>
-      <div class="team-barchart">
-        <div id="team-barchart-left"></div>
-        <div id="team-barchart-axis"></div>
-        <div id="team-barchart-right"></div>
-      </div>
-      <div class="possession-pie">
-        <div id="possession-pie-left"></div>
-        <div id="possesion-title">
-          <h3>Average ball<br>possession</h3>
-        </div>
-        <div id="possession-pie-right"></div>
-      </div>
-    </div>
-    <!-- <div id="container">
-    <div id="tournament-tree">
-      <div id="labels"></div>
-    </div>
-  </div> -->
-  </div>
-  <div id="players">
-    <div class="spacing"></div>
-    <div class="section-card">
-      <div class="section">
-        <div class="section-title">
-          <h1>Players</h1>
-        </div>
-        <div class="left-half">
-          <img class="player-image" src="https://cdn.sofifa.org/players/10/19/177683.png">
-          <p>Yann Sommer</p>
-        </div>
-        <div class="right-half">
-          <img class="player-image" src="https://cdn.sofifa.org/players/10/19/231747.png">
-          <p>Kylian Mbappé</p>
-        </div>
-      </div>
-
-      <div id="player-stats-appearances"></div>
-      <div id="player-stats-minutes"></div>
-      <div id="player-stats-goals"></div>
-      <div id="player-stats-rating"></div>
-      <div id="player-stats-caps"></div>
     </div>
   </div>
-  <div id="overall">
-    <div class="spacing"></div>
-    <div class="section-card">
-      <div class="section">
-        <div class="section-title">
-          <h1>Overall</h1>
-        </div>
-      </div>
-      <div class="overall-content-centered">
-        <select id="select-overall-team-button"></select>
-        <div id="overall-team-barchart"></div>
-      </div>
-
-    </div>
-  </div>
-
 
   <script src='./lib/d3/d3.js'></script>
   <script src='./lib/lodash.js'></script>
-  <script src="./src/teamstatisticsleft.js"></script>
-  <script src="./src/teamstatisticsright.js"></script>
+  <script src="./src/teamstatistics.js"></script>
+  <!-- <script src="./src/teamstatisticsleft.js"></script>
+  <script src="./src/teamstatisticsright.js"></script> -->
+  <script src="./src/overallteambarchart.js"></script>
   <script src='./src/tournamenttree.js'></script>
   <script src='./src/player_appearances.js'></script>
   <script src='./src/player_minutes.js'></script>
   <script src='./src/player_goals.js'></script>
   <script src='./src/player_rating.js'></script>
   <script src='./src/player_caps.js'></script>
-  <script src="./src/overallteambarchart.js"></script>
-
+ 
   <!-- Sticky Header -->
   <script>
     window.onscroll = function () { myFunction() };

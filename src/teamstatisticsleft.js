@@ -9,7 +9,7 @@ var marginLogoLeft = { top: 0, right: 0, bottom: 0, left: 0 },
 
 //Dimensions and margins Bar Chart
 var marginTeamBarLeft = { top: 10, right: 0, bottom: 30, left: 30 },
-    widthTeamBarLeft = 450 - marginTeamBarLeft.left - marginTeamBarLeft.right,
+    widthTeamBarLeft = 400 - marginTeamBarLeft.left - marginTeamBarLeft.right,
     heightTeamBarLeft = 600 - marginTeamBarLeft.top - marginTeamBarLeft.bottom;
    
 //Dimensions barAxis (Y)
@@ -84,10 +84,9 @@ var teamCategories = [
 //Read the data
 Promise.all([
   d3.csv("./data/wc_teams_infos.csv"),
-  d3.csv("./data/wc_team_stats.csv")
+  d3.csv("./data/wc_team_stats.csv"),
+  d3.csv("./data/World_cup_2018_players_complete.csv")
 ]).then(function(data) {
-  console.log(data[0][0])
-  console.log(data[1][0])
 
   //map with all team names
   var allteamsLeft = d3.map(data[1], function(d){return(d.country)}).keys()
@@ -257,12 +256,25 @@ function arcTweenLeft(newAngle, newText, newColor) {
   };
 };
 
-  // Updates all values
+
+//Initialise Dropdown-player
+var initialTeamPlayers = data[2].filter(function(d){return d.Team==data[0][indexLeft]["country"]})
+
+// Dropdown-player left
+d3.select("#select-player-button-left")
+.selectAll("myOptions")
+.data(initialTeamPlayers)
+.enter()
+.append("option")
+.text(function(d) {return d.FullName;}) // text showed in the menu
+.attr("value", function(d) {return d.FullName;});
+ 
+    // Updates all values
   function updateLeftTeam(selectedGroupLeft) {
 
     // Create new generalInfo data with selection
     var generalInfoDataFilterLeft = data[0].filter(function(d){return d.country==selectedGroupLeft})
-    console.log("test: " + generalInfoDataFilterLeft)
+    console.log("Test"+generalInfoDataFilterLeft)
 
     //Flag
     d3.selectAll("#flag-left")
@@ -298,6 +310,24 @@ function arcTweenLeft(newAngle, newText, newColor) {
       .text(function(d) {
         return (generalInfoDataFilterLeft[0]["market_value"] + " Million €");
       });
+
+      // update Dropdown-player
+      var selectedTeamPlayers = data[2].filter(function(d){return d.Team==selectedGroupLeft})
+   
+      var updatePlayerSelect = d3.select("#select-player-button-left")
+       .selectAll("option")
+       .data(selectedTeamPlayers)
+    
+      updatePlayerSelect.exit().remove();
+    
+      updatePlayerSelect.enter()
+      
+      updatePlayerSelect
+      .enter()
+      .append("option")
+      .merge(updatePlayerSelect)
+      .text(function(d) {return d.FullName;}) // text showed in the menu
+      .attr("value", function(d) {return d.FullName;});
 
     // Create new barChart data with selection
     var barChartDataFilterLeft = data[1].filter(function(d){return d.country==selectedGroupLeft})

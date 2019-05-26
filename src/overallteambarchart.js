@@ -1,6 +1,6 @@
 //Dimensions and margins Bar Chart
 var marginOverallTeamBar = { top: 50, right: 30, bottom: 60, left: 50 },
-  widthOverallTeamBar = 1100 - marginOverallTeamBar.left - marginOverallTeamBar.right,
+  widthOverallTeamBar = 1000 - marginOverallTeamBar.left - marginOverallTeamBar.right,
   heightOverallTeamBar = 400 - marginOverallTeamBar.top - marginOverallTeamBar.bottom;
 
 var overallTeamBarChartCanvas = d3

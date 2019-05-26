@@ -50,8 +50,8 @@ h1 {
   width: 100.3%;
 }
 
-.sticky + .stats {
-  /* padding-top: 4.9%; */
+.sticky + .main-content {
+  padding-top: 6.7%;
 }
 
 /*Custom Select Button*/
@@ -166,7 +166,6 @@ nav {
 .section {
   margin-left: 5%;
   margin-right: 5%;
-  margin-bottom: 5%;
   display: grid;
   justify-items: center;
   grid-template-columns: 50 50;
@@ -260,7 +259,7 @@ nav {
 /*Possession Grid -- end*/
 /*Team statistics -- end*/
 
-.overall-content-centered{
+.content-centered{
   display: grid;
   justify-items: center;
   align-items: center;
@@ -269,6 +268,20 @@ nav {
 #select-overall-team-button{
   margin-bottom: 5%;
 }
+
+/*Player Table*/
+.player-select{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*Player Table -- end*/
 
 /*Tournament Table*/
 .link {
@@ -281,8 +294,11 @@ nav {
   stroke-width: 3px !important;
 }
 
-#container {
+#tournamenttree-container {
   position: relative;
+  margin-left: -2%;
+  margin-top: -2%; 
+ 
 }
 
 #labels .table {
@@ -290,7 +306,7 @@ nav {
   background-color: #0f4583;
   padding: 5px 7px 3px;
   line-height: 1.5;
-  min-width: 185px;
+  min-width: 100px;
   box-shadow: 0px 2px 2px 1px rgba(34, 34, 34, 0.1);
   color: #222222;
   border: 0px solid rgba(34, 34, 34, 0.1);
@@ -298,7 +314,7 @@ nav {
 }
 
 #labels .played {
-  --border-width: 0px;
+  border-width: 0px;
 }
 
 #labels .thirdplace .title {
@@ -312,10 +328,10 @@ nav {
   color: #222222;
   font-size: 15px;
   padding: 5px 3px 3px;
+  min-width: 122px;
   text-transform: uppercase;
   background-color: #0f4583;
-  min-width: 185px;
-  line-height: 1.5;
+  line-height: 1.6;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
 }
@@ -341,8 +357,9 @@ nav {
 }
 
 .cell.name {
+  font-family: dusha;
   color: white;
-  min-width: 120px;
+  min-width: 20px;
   padding-right: 10px;
   vertical-align: middle;
 }
