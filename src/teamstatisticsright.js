@@ -9,7 +9,7 @@ var marginLogoRight = { top: 0, right: 0, bottom: 0, left: 0 },
 
 // set the dimensions and margins of the graph
 var marginTeamBarRight = { top: 10, right: 30, bottom: 30, left: 0 },
-    widthTeamBarRight = 450 - marginTeamBarRight.left - marginTeamBarRight.right,
+    widthTeamBarRight = 400 - marginTeamBarRight.left - marginTeamBarRight.right,
     heightTeamBarRight = 600 - marginTeamBarRight.top - marginTeamBarRight.bottom;
 
 var flagCanvasRight = d3
@@ -60,11 +60,9 @@ var teamCategories = [
 
 //Read the data
 Promise.all([
-  d3.csv("/data/wc_teams_infos.csv"),
-  d3.csv("/data/wc_team_stats.csv")
+  d3.csv("./data/wc_teams_infos.csv"),
+  d3.csv("./data/wc_team_stats.csv")
 ]).then(function(data) {
-  console.log(data[0][0])
-  console.log(data[1][0])
 
   // //map with all team names
   var allteamsRight = d3.map(data[1], function(d){return(d.country)}).keys()
@@ -95,7 +93,8 @@ Promise.all([
     .attr("xlink:href", function(d) {
       return data[0][indexRight]["flag"];
     })
-    .attr("width", 100);
+    .attr("width", 100)
+    .attr("height", 50);
 
   //Logo
   logoCanvasRight
@@ -105,8 +104,9 @@ Promise.all([
     .attr("xlink:href", function(d) {
       return data[0][indexRight]["team-logo"];
     })
-    .attr("height", 80);
-    
+    .attr("height", 80)
+    .attr("width", 80);
+        
 d3.select("#final-placement-right")
   .append("text")
   .data(data)
@@ -219,7 +219,8 @@ function arcTweenRight(newAngle, newText, newColor) {
       .attr("xlink:href", function(d) {
         return generalInfoDataFilterRight[0]["flag"];
       })
-      .attr("width", 100);
+      .attr("width", 100)
+      .attr("height", 50);
 
     //Logo
     d3.selectAll("#logo-right")

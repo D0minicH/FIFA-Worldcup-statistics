@@ -1,118 +1,119 @@
 
 // set the dimensions and margins of the diagram
-var margin = { top: 40, right: 0, bottom: 50, left: 240 },
-  width = 1100 - margin.left - margin.right,
-  height = 650 - margin.top - margin.bottom,
+var margin = { top: 40, right: 50, bottom: 50, left: 100 },
+  width = 700 - margin.left - margin.right,
+  height = 600 - margin.top - margin.bottom,
   separationConstant = 1;
 
 var treeData = {
-  a: "France",
+  a: "FRA",
   flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/fra",
-  b: "Croatia",
+  b: "CRO",
   flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/cro",
   ascore: 4,
   bscore: 2,
   win: true,
   children: [
     {
-      a: "France",
+      a: "FRA",
       flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/fra",
-      b: "Belgium",
+      b: "BEL",
       flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/bel",
       ascore: 1,
       bscore: 0,
       win: true,
       children: [
         {
-          a: "Uruguay",
+          a: "URU",
           flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/uru",
-          b: "France",
+          b: "FRA",
           flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/fra",
           ascore: 0,
           bscore: 2,
           win: true,
           children: [
             {
-              a: "France",
+              a: "FRA",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/fra",
-              b: "Argentina",
+              b: "ARG",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/arg",
               ascore: 4,
               bscore: 2,
               win: true,
             },
             {
-              a: "Uruguay",
+              a: "URU",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/uru",
-              b: "Portugal",
+              b: "POR",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/por",
               ascore: 2,
               bscore: 1,
+              win: true
             }
           ]
         },
         {
-          a: "Brasil",
+          a: "BRA",
           flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/bra",
-          b: "Belgium",
+          b: "BEL",
           flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/bel",
           ascore: 1,
           bscore: 2,
-          win: false,
+          win: true,
           children: [
             {
-              a: "Brasil",
+              a: "BRA",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/bra",
-              b: "Mexico",
+              b: "MEX",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/mex",
               ascore: 2,
               bscore: 0,
-              win: false
+              win: true
             },
             {
-              a: "Belgium",
+              a: "BEL",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/bel",
-              b: "Japan",
+              b: "JPN",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/jpn",
               ascore: 3,
               bscore: 2,
-              win: false
+              win: true
             }
           ]
         }
       ]
     },
     {
-      a: "Croatia",
+      a: "CRO",
       flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/cro",
-      b: "England",
+      b: "ENG",
       flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/eng",
       ascore: 2,
       bscore: 1,
       win: true,
       children: [
         {
-          a: "Russia",
+          a: "RUS",
           flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/rus",
-          b: "Croatia",
+          b: "CRO",
           flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/cro",
           ascore: 2,
           bscore: 2,
           win: true,
           children: [
             {
-              a: "Spain",
+              a: "ESP",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/esp",
-              b: "Russia",
+              b: "RUS",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/rus",
               ascore: 1,
               bscore: 1,
-              win: false
+              win: true
             },
             {
-              a: "Croatia",
+              a: "CRO",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/cro",
-              b: "Denmark",
+              b: "DEN",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/den",
               ascore: 1,
               bscore: 1,
@@ -121,31 +122,31 @@ var treeData = {
           ]
         },
         {
-          a: "Sweden",
+          a: "SWE",
           flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/swe",
-          b: "England",
+          b: "ENG",
           flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/eng",
           ascore: 0,
           bscore: 2,
-          win: false,
+          win: true,
           children: [
             {
-              a: "Sweden",
+              a: "SWE",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/swe",
-              b: "Switzerland",
+              b: "SUI",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/sui",
               ascore: 1,
               bscore: 0,
-              win: false
+              win: true
             },
             {
-              a: "Columbia",
+              a: "COL",
               flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/col",
-              b: "England",
+              b: "ENG",
               flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/eng",
               ascore: 1,
               bscore: 1,
-              win: false
+              win: true
             }
           ]
         }
@@ -219,19 +220,16 @@ var labels = d3
   .classed("table", true)
   .classed("played", d => d.data.ascore || d.data.bscore)
 
-  .style("left", d => width - d.y + margin.left - 100 + "px")
-  .style(
-    "top",
-    d => d.x + (!d.data.b ? 12 : 0) + (!d.data.children ? -4 : 0) + 10 + "px"
-  )
+  .style("left", d => width - d.y + (margin.left*0.5) + "px")
+  .style("top", d => d.x + (!d.data.b ? 12 : 0) + (!d.data.children ? -4 : 0) + 15 + "px")
   .html(d => gameTemplate(d));
 
 // third place
 var thrdData = {
   data: {
-    a: "Belgium",
+    a: "BEL",
     flaga:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/bel",
-    b: "England",
+    b: "ENG",
     flagb:"https://api.fifa.com/api/v1/picture/flags-fwc2018-5/eng",
     ascore: 2,
     bscore: 0
@@ -243,8 +241,8 @@ var thrd = d3
   .append("div")
   .classed("thirdplace", true)
   .style("position", "absolute")
-  .style("left", width -145+ "px")
-  .style("top", height / 2 + margin.top - 48 + "px");
+  .style("left", width -130+ "px")
+  .style("top", height / 2 + margin.top - 42 + "px");
 
 thrd
   .append("div")

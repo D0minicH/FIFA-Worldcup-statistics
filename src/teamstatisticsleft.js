@@ -9,7 +9,7 @@ var marginLogoLeft = { top: 0, right: 0, bottom: 0, left: 0 },
 
 //Dimensions and margins Bar Chart
 var marginTeamBarLeft = { top: 10, right: 0, bottom: 30, left: 30 },
-    widthTeamBarLeft = 450 - marginTeamBarLeft.left - marginTeamBarLeft.right,
+    widthTeamBarLeft = 400 - marginTeamBarLeft.left - marginTeamBarLeft.right,
     heightTeamBarLeft = 600 - marginTeamBarLeft.top - marginTeamBarLeft.bottom;
    
 //Dimensions barAxis (Y)
@@ -83,11 +83,10 @@ var teamCategories = [
 
 //Read the data
 Promise.all([
-  d3.csv("/data/wc_teams_infos.csv"),
-  d3.csv("/data/wc_team_stats.csv")
+  d3.csv("./data/wc_teams_infos.csv"),
+  d3.csv("./data/wc_team_stats.csv"),
+  d3.csv("./data/World_cup_2018_players_complete.csv")
 ]).then(function(data) {
-  console.log(data[0][0])
-  console.log(data[1][0])
 
   //map with all team names
   var allteamsLeft = d3.map(data[1], function(d){return(d.country)}).keys()
@@ -118,7 +117,8 @@ Promise.all([
     .attr("xlink:href", function(d) {
       return data[0][indexLeft]["flag"];
     })
-    .attr("width", 100);
+    .attr("width", 100)
+    .attr("height", 50);
 
   //Logo
   logoCanvasLeft
@@ -128,14 +128,12 @@ Promise.all([
     .attr("xlink:href", function(d) {
       return data[0][indexLeft]["team-logo"];
     })
-    .attr("height", 80);
-
+    .attr("height", 80)
+    .attr("width", 80);
 
   d3.select("#final-placement-left")
     .append("text")
     .data(data)
-    // .attr("y", 200)
-    // .attr("x", 0)
     .text(function(d) {
       return data[0][indexLeft]["final_placement"];
     });
@@ -143,8 +141,6 @@ Promise.all([
   d3.select("#market-value-left")
     .append("text")
     .data(data)
-    // .attr("y", 200)
-    // .attr("x", 0)
     .text(function(d) {
       return (data[0][indexLeft]["market_value"] + " Million €");
     });
@@ -185,7 +181,20 @@ Promise.all([
     .attr("height", y.bandwidth())
     .attr("fill", data[0][indexLeft]["color"]);
 
-  //Bar Axis
+  //Bar Label
+  teamBarChartCanvasLeft.selectAll(".text")  		
+    .data(data[1].filter(function(d){return d.country==allteamsLeft[0]}))
+    .enter()
+    .append("text")
+    .attr("class","label")
+    .attr("x", (function(d) { return x(d.value) - 25;  }  ))
+    .attr("y", function(d) { return y(d.category) + 14; })
+    .attr("font-family","dusha")
+    .style("font-weight", "bold")
+    .attr("dy", ".75em")
+    .text(function(d) { return d.value; });   
+    
+ //Bar Axis
   teamBarChartAxis.selectAll("axislabels")
     .data([ "Matches played",
             "Goals scored",
@@ -208,19 +217,6 @@ Promise.all([
     .style("alignment-baseline", "middle")
     .style("font-size", 20)
     .style("font-weight", "bold");
-
-  //Bar Label
-  teamBarChartCanvasLeft.selectAll(".text")  		
-    .data(data[1].filter(function(d){return d.country==allteamsLeft[0]}))
-    .enter()
-    .append("text")
-    .attr("class","label")
-    .attr("x", (function(d) { return x(d.value) - 25;  }  ))
-    .attr("y", function(d) { return y(d.category) + 14; })
-    .attr("font-family","dusha")
-    .style("font-weight", "bold")
-    .attr("dy", ".75em")
-    .text(function(d) { return d.value; });   	
 
 //Progress Pie Chart
   var arc = d3.arc()
@@ -260,11 +256,25 @@ function arcTweenLeft(newAngle, newText, newColor) {
   };
 };
 
-  // Updates all values
+
+//Initialise Dropdown-player
+var initialTeamPlayers = data[2].filter(function(d){return d.Team==data[0][indexLeft]["country"]})
+
+// Dropdown-player left
+d3.select("#select-player-button-left")
+.selectAll("myOptions")
+.data(initialTeamPlayers)
+.enter()
+.append("option")
+.text(function(d) {return d.FullName;}) // text showed in the menu
+.attr("value", function(d) {return d.FullName;});
+ 
+    // Updates all values
   function updateLeftTeam(selectedGroupLeft) {
 
     // Create new generalInfo data with selection
     var generalInfoDataFilterLeft = data[0].filter(function(d){return d.country==selectedGroupLeft})
+    console.log("Test"+generalInfoDataFilterLeft)
 
     //Flag
     d3.selectAll("#flag-left")
@@ -273,7 +283,8 @@ function arcTweenLeft(newAngle, newText, newColor) {
       .attr("xlink:href", function(d) {
         return generalInfoDataFilterLeft[0]["flag"];
       })
-      .attr("width", 100);
+      .attr("width", 100)
+      .attr("height", 50);
 
     //Logo
     d3.selectAll("#logo-left")
@@ -282,7 +293,8 @@ function arcTweenLeft(newAngle, newText, newColor) {
     .attr("xlink:href", function(d) {
       return generalInfoDataFilterLeft[0]["team-logo"];
     })
-    .attr("height", 80);
+    .attr("height", 80)
+    .attr("width", 80);
 
 
     d3.select("#final-placement-left")
@@ -298,6 +310,24 @@ function arcTweenLeft(newAngle, newText, newColor) {
       .text(function(d) {
         return (generalInfoDataFilterLeft[0]["market_value"] + " Million €");
       });
+
+      // update Dropdown-player
+      var selectedTeamPlayers = data[2].filter(function(d){return d.Team==selectedGroupLeft})
+   
+      var updatePlayerSelect = d3.select("#select-player-button-left")
+       .selectAll("option")
+       .data(selectedTeamPlayers)
+    
+      updatePlayerSelect.exit().remove();
+    
+      updatePlayerSelect.enter()
+      
+      updatePlayerSelect
+      .enter()
+      .append("option")
+      .merge(updatePlayerSelect)
+      .text(function(d) {return d.FullName;}) // text showed in the menu
+      .attr("value", function(d) {return d.FullName;});
 
     // Create new barChart data with selection
     var barChartDataFilterLeft = data[1].filter(function(d){return d.country==selectedGroupLeft})
