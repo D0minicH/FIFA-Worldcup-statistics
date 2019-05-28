@@ -207,24 +207,28 @@ nav {
 }
 
 /*BarChart Grid*/
-.team-barchart-left {
+#team-barchart-left {
   grid-area: left-barchart;
+  justify-self: end;
+
 }
 
-.team-barchart-axis {
+#team-barchart-axis {
   grid-area: center-axis;
 }
 
-.team-barchart-right {
+#team-barchart-right {
   grid-area: right-barchart;
+  justify-self: start;
 }
 
 .team-barchart {
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
   display: grid;
   justify-items: center;
-  grid-template-columns: 40 20 40;
+  grid-template-columns: 45fr 10fr 45fr;
   grid-template-rows: auto;
   grid-template-areas: "left-barchart center-axis right-barchart";
 }
