@@ -36,65 +36,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         .attr("height", canvPlayerHeight)
         .style("horizontal-align", "middle");
 
-    // Right Player Section        
-    svgPlayerInfoRight.append("rect")
-        .attr("width", "100%")
-        .attr("height", "100%")
-        .style("alignment-baseline", "middle")
-        .attr("fill", "rgb(244, 244, 244)");
-
-    svgPlayerInfoRight.append("image")
-        .attr("x", "22%")
-        .attr("y", "40%")
-        .attr("transform", "translate(-50, -50)")
-        .data(data)
-        .attr("xlink:href", "https://cdn.sofifa.org/players/10/19/170828.png")
-        .attr("width", 100);
-
-    svgPlayerInfoRight.append("image")
-        .attr("x", "22%")
-        .attr("y", "92%")
-        .attr("transform", "translate(-50, -50)")
-        .attr("xlink:href", "./images/player_line.svg")
-        .attr("width", 110);
-
-    svgPlayerInfoRight.append("text")
-        .attr("x", "38%")
-        .attr("y", "25%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "180%")
-        .style("text-anchor", "start")
-        .attr("font-family", "dusha")
-        .style("font-weight", "bold")
-        .attr("fill", "#171714")
-        .text(data[15].FullName);
-
-    svgPlayerInfoRight.append("text")
-        .attr("x", "38%")
-        .attr("y", "45%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "120%")
-        .attr("font-weight", "bold")
-        .attr("fill", "grey")
-        .text("Position: " + data[15].Position);
-
-    svgPlayerInfoRight.append("text")
-        .attr("x", "38%")
-        .attr("y", "59%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "120%")
-        .attr("font-weight", "bold")
-        .attr("fill", "grey")
-        .text("Age: " + data[15].Age);
-
-    svgPlayerInfoRight.append("text")
-        .attr("x", "38%")
-        .attr("y", "73%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "120%")
-        .attr("font-weight", "bold")
-        .attr("fill", "grey")
-        .text("Value: " + data[15].Value);
+   
 
     console.log("Name", data[15].FullName)
 
