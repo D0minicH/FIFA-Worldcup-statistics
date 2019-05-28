@@ -8,14 +8,14 @@ var marginLogo = { top: 0, right: 0, bottom: 0, left: 0 },
   heightLogo = 50 - marginLogo.top - marginLogo.bottom;
 
 //Dimensions and margins Bar Chart
-var marginTeamBar = { top: 10, right: 0, bottom: 30, left: 30 },
+var marginTeamBar = { top: 10, right: 0, bottom: 10, left: 0 },
   widthTeamBar = 400 - marginTeamBar.left - marginTeamBar.right,
-  heightTeamBar = 600 - marginTeamBar.top - marginTeamBar.bottom;
+  heightTeamBar = 500 - marginTeamBar.top - marginTeamBar.bottom;
 
 //Dimensions barAxis (Y)
-var marginBarAxis = { top: 10, right: 50, bottom: 30, left: 50 },
+var marginBarAxis = { top: 10, right: 50, bottom: 10, left: 50 },
   widthBarAxis = 200 - marginBarAxis.left - marginBarAxis.right,
-  heightBarAxis = 600 - marginBarAxis.top - marginBarAxis.bottom;
+  heightBarAxis = 500 - marginBarAxis.top - marginBarAxis.bottom;
 
 //Dimensions for the Piechart
 var widthPie = 250;
@@ -97,8 +97,8 @@ teamBarChartAxis
   ])
   .enter()
   .append("text")
-  .attr("x", 48)
-  .attr("y", function(d, i) { return 27 + i * 46.25; })
+  .attr("x", 50)
+  .attr("y", function(d, i) { return 27 + i * 39.1; })
   .text(function(d) { return d; })
   .attr("text-anchor", "middle")
   .style("alignment-baseline", "middle")
@@ -144,7 +144,7 @@ Promise.all([
 
     generateDivIds(direction);
 
-    // Dropdown-Button left
+    // Dropdown-Select Team
     d3.select("#" + divIdSet[0])
       .selectAll("myOptions")
       .data(allteams)
@@ -188,7 +188,7 @@ Promise.all([
     // Add X axis
     var x = d3
       .scaleLinear()
-      .domain([0, 120])
+      .domain([0, 130])
       .range([widthTeamBar, 0]);
     window["teamBarChartCanvas" + direction]
       .append("g")
@@ -216,7 +216,7 @@ Promise.all([
       .scaleBand()
       .range([0, heightTeamBar])
       .domain(teamCategories)
-      .padding(0.1);
+      .padding(0.4);
 
     //Set Axis Origin to Right side when Chart should head to left and vice versa
     window["teamBarChartCanvas" + direction]
@@ -229,22 +229,39 @@ Promise.all([
       .selectAll("bar")
       .data(data[1].filter(function(d) { return d.country == allteams[startIndex]; }))
       .enter()
-      .append("rect")
-      .attr("x", function(d){
+      .append("line")
+      .attr("class", "line")
+      .attr("x1", function(d){
           if(direction == "left"){ return x(d.value); 
-        } else{ return 0}
+        } else{ return  x(widthTeamBar)}
       })
-      .attr("y", function(d) { return y(d.category); })
-      .attr("width", function(d) { return widthTeamBar - x(d.value); })
-      .attr("height", y.bandwidth())
-      .attr("fill", data[0][startIndex]["color"]);
+      .attr("x2", function(d){
+          if(direction == "left"){ return x(0); 
+        } else{ return widthTeamBar - x(d.value);}
+      })
+      .attr("y1", function(d) { return y(d.category) + 11.5; })
+      .attr("y2", function(d) { return y(d.category) + 11.5; })
+      .attr("stroke-linecap", "round")
+      .attr("stroke-width", y.bandwidth())
+      .attr("stroke", data[0][startIndex]["color"]);
+
+    //   .append("rect")
+    //   .attr("x", function(d){
+    //       if(direction == "left"){ return x(d.value); 
+    //     } else{ return 0}
+    //   })
+    //   .attr("y", function(d) { return y(d.category); })
+    //  // .attr("ry", 20)
+    //   .attr("width", function(d) { return widthTeamBar - x(d.value); })
+    //   .attr("height", y.bandwidth())
+    //   .attr("fill", data[0][startIndex]["color"]);
 
     // Sets direction for Label for bar left/right
     function setBarLabeldirection(labelDirection) {
       if (labelDirection == "left") {
-        return -25;
+        return -35;
       } else {
-        return 10;
+        return 20;
       }
     }
 
@@ -260,7 +277,7 @@ Promise.all([
       } else{ return widthTeamBar - x(d.value) + setBarLabeldirection(direction)}
       })
      // .attr("x", function(d) { return x(d.value) + setBarLabeldirection(direction); })
-      .attr("y", function(d) { return y(d.category) + 14; })
+      .attr("y", function(d) { return y(d.category) + 5 ; })
       .attr("font-family", "dusha")
       .style("font-weight", "bold")
       .attr("dy", ".75em")
@@ -366,24 +383,42 @@ Promise.all([
 
       // variable to map data to existing bars
       var updateBars = window["teamBarChartCanvas" + direction]
-        .selectAll("rect")
+        .selectAll(".line")
         .data(barChartDataFilter);
+
+        updateBars.exit().remove();
 
       // Pass data to update bar
       updateBars
         .enter()
-        .append("rect")
+        .append("line")
+        .attr("class", "line")
         .merge(updateBars)
         .transition()
         .duration(1000)
-        .attr("x", function(d){
+        .attr("x1", function(d){
             if(direction == "left"){ return x(d.value); 
-          } else{ return 0}
+          } else{ return  x(widthTeamBar)}
         })
-        .attr("y", function(d) { return y(d.category); })
-        .attr("width", function(d) { return widthTeamBar - x(d.value); })
-        .attr("height", y.bandwidth())
-        .attr("fill", generalInfoDataFilter[0]["color"]);
+        .attr("x2", function(d){
+            if(direction == "left"){ return x(0); 
+          } else{ return widthTeamBar - x(d.value);}
+        })
+        .attr("y1", function(d) { return y(d.category) + 11.5; })
+        .attr("y2", function(d) { return y(d.category) + 11.5; })
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", y.bandwidth())
+        .attr("stroke", generalInfoDataFilter[0]["color"]);
+        
+        
+        // .attr("x", function(d){
+        //     if(direction == "left"){ return x(d.value); 
+        //   } else{ return 0}
+        // })
+        // .attr("y", function(d) { return y(d.category); })
+        // .attr("width", function(d) { return widthTeamBar - x(d.value); })
+        // .attr("height", y.bandwidth())
+        // .attr("fill", generalInfoDataFilter[0]["color"]);
 
       // variable to map data to existing barText
       var updateBartext = window["teamBarChartCanvas" + direction]
@@ -403,7 +438,7 @@ Promise.all([
             if(direction == "left"){ return x(d.value) + setBarLabeldirection(direction); 
           } else{ return widthTeamBar - x(d.value) + setBarLabeldirection(direction)}
         })
-        .attr("y", function(d) { return y(d.category) + 14; })
+        .attr("y", function(d) { return y(d.category) + 5; })
         .attr("dy", ".75em")
         .text(function(d) { return d.value; });
 
