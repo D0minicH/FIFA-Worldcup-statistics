@@ -1,24 +1,13 @@
 d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
-
-    // // When the button is changed, run the updateChart function
-    // d3.select("#select-team-button-left").on("change", function (a) {
-    //     var selectedOptionLeft = d3.select(this).property("value")
-    //     console.log("Option Left for Player:" + selectedOptionLeft)
-    //     updatePlayerLeft(selectedOptionLeft)
-
-    // })
-
     const canvPlayerHeight = 75;
 
-    const svgPicturePlayerLeft = d3.select("#player-picture-left").append("svg")
-        .attr("width", "50%")
+    const svgPlayerInfoLeft = d3.select("#player-picture-left").append("svg")
+        .attr("width", "100%")
         .attr("height", 200)
-        .attr("x", "38%")
-        .attr("y", "73%")
         .style("horizontal-align", "middle");
-    
-    const svgPicturePlayerRight = d3.select("#player-picture-right").append("svg")
-        .attr("width", "50%")
+
+    const svgPlayerInfoRight = d3.select("#player-picture-right").append("svg")
+        .attr("width", "100%")
         .attr("height", 200)
         .style("horizontal-align", "middle");
 
@@ -47,75 +36,14 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         .attr("height", canvPlayerHeight)
         .style("horizontal-align", "middle");
 
-    
-    // Left Player Section        
-    svgPicturePlayerLeft.append("rect")
-        .attr("width", "100%")
-        .attr("height", "100%")
-        .style("alignment-baseline", "middle")
-        .attr("fill", "rgb(244, 244, 244)");
-
-    svgPicturePlayerLeft.append("image")
-        .attr("x", "22%")
-        .attr("y", "40%")
-        .attr("transform", "translate(-50, -50)")
-        .data(data)
-        .attr("xlink:href", "https://cdn.sofifa.org/players/10/19/170828.png")
-        .attr("width", 100);
-
-    svgPicturePlayerLeft.append("image")
-        .attr("x", "22%")
-        .attr("y", "92%")
-        .attr("transform", "translate(-50, -50)")
-        .attr("xlink:href", "./images/player_line.svg")
-        .attr("width", 110);
-
-    svgPicturePlayerLeft.append("text")
-        .attr("x", "38%")
-        .attr("y", "25%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "180%")
-        .style("text-anchor", "start")
-        .attr("font-family", "dusha")
-        .style("font-weight", "bold")
-        .attr("fill", "#171714")
-        .text(data[15].FullName);
-
-    svgPicturePlayerLeft.append("text")
-        .attr("x", "38%")
-        .attr("y", "45%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "120%")
-        .attr("font-weight", "bold")
-        .attr("fill", "grey")
-        .text("Position: " + data[15].Position);
-
-    svgPicturePlayerLeft.append("text")
-        .attr("x", "38%")
-        .attr("y", "59%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "120%")
-        .attr("font-weight", "bold")
-        .attr("fill", "grey")
-        .text("Age: " + data[15].Age);
-
-    svgPicturePlayerLeft.append("text")
-        .attr("x", "38%")
-        .attr("y", "73%")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "120%")
-        .attr("font-weight", "bold")
-        .attr("fill", "grey")
-        .text("Value: " + data[15].Value);
-
     // Right Player Section        
-    svgPicturePlayerRight.append("rect")
+    svgPlayerInfoRight.append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
         .style("alignment-baseline", "middle")
         .attr("fill", "rgb(244, 244, 244)");
 
-        svgPicturePlayerRight.append("image")
+    svgPlayerInfoRight.append("image")
         .attr("x", "22%")
         .attr("y", "40%")
         .attr("transform", "translate(-50, -50)")
@@ -123,14 +51,14 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         .attr("xlink:href", "https://cdn.sofifa.org/players/10/19/170828.png")
         .attr("width", 100);
 
-        svgPicturePlayerRight.append("image")
+    svgPlayerInfoRight.append("image")
         .attr("x", "22%")
         .attr("y", "92%")
         .attr("transform", "translate(-50, -50)")
         .attr("xlink:href", "./images/player_line.svg")
         .attr("width", 110);
 
-        svgPicturePlayerRight.append("text")
+    svgPlayerInfoRight.append("text")
         .attr("x", "38%")
         .attr("y", "25%")
         .attr("font-family", "sans-serif")
@@ -141,7 +69,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         .attr("fill", "#171714")
         .text(data[15].FullName);
 
-        svgPicturePlayerRight.append("text")
+    svgPlayerInfoRight.append("text")
         .attr("x", "38%")
         .attr("y", "45%")
         .attr("font-family", "sans-serif")
@@ -150,7 +78,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         .attr("fill", "grey")
         .text("Position: " + data[15].Position);
 
-        svgPicturePlayerRight.append("text")
+    svgPlayerInfoRight.append("text")
         .attr("x", "38%")
         .attr("y", "59%")
         .attr("font-family", "sans-serif")
@@ -159,7 +87,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         .attr("fill", "grey")
         .text("Age: " + data[15].Age);
 
-        svgPicturePlayerRight.append("text")
+    svgPlayerInfoRight.append("text")
         .attr("x", "38%")
         .attr("y", "73%")
         .attr("font-family", "sans-serif")
@@ -183,6 +111,220 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
     const widthDomainCaps = d3.extent(data, d => Number(d.Caps));
     const widthDomainMinutes = d3.extent(data, d => Number(d.Minutes));
     const widthDomainRating = d3.extent(data, d => Number(d.Rating));
+
+    function playerInfoLeft(svg, playerImage, playerName, playerPosition, playerAge, playerValue, playerClub) {
+        svg.append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .style("alignment-baseline", "middle")
+            .attr("fill", "white");
+
+        svg.append("image")
+            .attr("x", "10%")
+            .attr("y", "20%")
+            .attr("transform", "translate(-50, -50)")
+            .data(data)
+            .attr("xlink:href", playerImage)
+            .attr("width", 170);
+
+        svg.append("image")
+            .attr("x", "11.5%")
+            .attr("y", "110%")
+            .attr("transform", "translate(-50, -50)")
+            .attr("xlink:href", "./images/player_line.svg")
+            .attr("width", 150);
+
+        svg.append("text")
+            .attr("x", "38%")
+            .attr("y", "25%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "100%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text("AGE");
+
+        svg.append("text")
+            .attr("x", "38%")
+            .attr("y", "40%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "190%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#BDB289")
+            .text(playerAge);
+
+        svg.append("text")
+            .attr("x", "50%")
+            .attr("y", "25%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "100%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text("POSITION");
+
+        svg.append("text")
+            .attr("x", "50%")
+            .attr("y", "40%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "190%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#BDB289")
+            .text(playerPosition);
+
+        svg.append("text")
+            .attr("x", "70%")
+            .attr("y", "25%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "100%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text("VALUE");
+
+        svg.append("text")
+            .attr("x", "70%")
+            .attr("y", "40%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "190%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#BDB289")
+            .text(playerValue);
+
+        svg.append("text")
+            .attr("x", "38%")
+            .attr("y", "63%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "70%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text(playerClub.toUpperCase());
+
+        svg.append("text")
+            .attr("x", "38%")
+            .attr("y", "80%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "240%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#171714")
+            .text(playerName.toUpperCase());
+    }
+
+    function playerInfoRight(svg, playerImage, playerName, playerPosition, playerAge, playerValue, playerClub) {
+        svg.append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .style("alignment-baseline", "middle")
+            .attr("fill", "white");
+
+        svg.append("image")
+            .attr("x", "75%")
+            .attr("y", "20%")
+            .attr("transform", "translate(-50, -50)")
+            .data(data)
+            .attr("xlink:href", playerImage)
+            .attr("width", 170);
+
+        svg.append("image")
+            .attr("x", "76.5%")
+            .attr("y", "110%")
+            .attr("transform", "translate(-50, -50)")
+            .attr("xlink:href", "./images/player_line.svg")
+            .attr("width", 150);
+
+        svg.append("text")
+            .attr("x", "10%")
+            .attr("y", "25%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "100%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text("AGE");
+
+        svg.append("text")
+            .attr("x", "10%")
+            .attr("y", "40%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "190%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#BDB289")
+            .text(playerAge);
+
+        svg.append("text")
+            .attr("x", "22%")
+            .attr("y", "25%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "100%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text("POSITION");
+
+        svg.append("text")
+            .attr("x", "22%")
+            .attr("y", "40%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "190%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#BDB289")
+            .text(playerPosition);
+
+        svg.append("text")
+            .attr("x", "42%")
+            .attr("y", "25%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "100%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text("VALUE");
+
+        svg.append("text")
+            .attr("x", "42%")
+            .attr("y", "40%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "190%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#BDB289")
+            .text(playerValue);
+
+        svg.append("text")
+            .attr("x", "10%")
+            .attr("y", "63%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "70%")
+            .attr("font-weight", "lighter")
+            .attr("letter-spacing", 1)
+            .attr("fill", "grey")
+            .text(playerClub.toUpperCase());
+
+        svg.append("text")
+            .attr("x", "10%")
+            .attr("y", "80%")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "240%")
+            .style("text-anchor", "start")
+            .attr("font-family", "dusha")
+            .style("font-weight", "bold")
+            .attr("fill", "#171714")
+            .text(playerName.toUpperCase());
+    }
 
     function playerBar(svg, barTitle, barDetails, scorePlayerLeft, scorePlayerRight,
         playerLeft, playerRight, widthDomain, startXLineRight, startXLineLeft) {
@@ -387,6 +529,10 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
     }
 
     function initializeStats(startXLineRight, startXLineLeft) {
+        playerInfoLeft(svgPlayerInfoLeft, data[15].Photo, data[15].Player, data[15].Position, data[15].Age, data[15].Value, data[15].Club);
+        playerInfoRight(svgPlayerInfoRight, data[15].Photo, data[15].Player, data[15].Position, data[15].Age, data[15].Value, data[15].Club);
+
+
 
         playerBar(svgAppreances, "Appearances", "How many times a player has appeared in all of the games.",
             data[15].Appearances, data[16].Appearances,
@@ -417,26 +563,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
             data[15].Name, data[15].Name,
             widthDomainRating,
             startXLineRight, startXLineLeft);
-
-
     }
-
-    function updatePlayerLeft(selectedOptionLeft) {
-        var selectedTeamPlayers = data.filter(function (d) { return d.Team == selectedOptionLeft })
-        console.log(selectedTeamPlayers[0])
-
-        d3.select("#select-player-button-left")
-            .selectAll("myOptions")
-            .data(selectedTeamPlayers)
-            .enter()
-            .append("option")
-            .text(function (d) { return d.Player; }) // text showed in the menu
-            .attr("value", function (d) { return d; });
-
-        console.log("BABRBBLRWABJRALKIOJHR", selectedTeamPlayers[0])
-    }
-
-    updatePlayerLeft("Argentina");
 
     initializeStats(startXLineRight, startXLineLeft);
 
@@ -447,6 +574,5 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         initializeStats(startXLineRight, startXLineLeft);
 
     });
-
 
 });
