@@ -1,4 +1,12 @@
 d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
+    var initialLeft = d3.select("#select-player-button-left").property("value")
+    var initialRight = d3.select("#select-player-button-right").property("value")
+
+    var initialSelectionLeft = data.filter(function (d) { return d.FullName == initialLeft })
+    var initialSelectionRight = data.filter(function (d) { return d.FullName == initialRight })
+
+    console.log("INITIALWERTE", initialSelectionLeft)
+
     const canvPlayerHeight = 75;
 
     const svgPlayerInfoLeft = d3.select("#player-picture-left").append("svg")
@@ -35,8 +43,6 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         .attr("width", "100%")
         .attr("height", canvPlayerHeight)
         .style("horizontal-align", "middle");
-
-   
 
     console.log("Name", data[15].FullName)
 
@@ -269,7 +275,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
     }
 
     function playerBar(svg, barTitle, barDetails, scorePlayerLeft, scorePlayerRight,
-        playerLeft, playerRight, widthDomain, startXLineRight, startXLineLeft) {
+        widthDomain, startXLineRight, startXLineLeft) {
 
         var containerWidth = currentWidth;
         var endXLineRight = ((containerWidth / 10));
@@ -351,23 +357,6 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
             .attr("font-family", "dusha")
             .style("font-weight", "bold")
             .text(scorePlayerRight);
-
-        // Texts Player Labels
-        svg.append("text")
-            .attr("y", 115)
-            .attr("x", 389)
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "20px")
-            .style("text-anchor", "end")
-            .text(playerLeft);
-
-        svg.append("text")
-            .attr("y", 115)
-            .attr("x", 409)
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "20px")
-            .style("text-anchor", "start")
-            .text(playerRight);
 
         // First Row Left
         svg.append("line")
@@ -471,38 +460,27 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
     }
 
     function initializeStats(startXLineRight, startXLineLeft) {
-        playerInfoLeft(svgPlayerInfoLeft, data[15].Photo, data[15].Player, data[15].Position, data[15].Age, data[15].Value, data[15].Club);
-        playerInfoRight(svgPlayerInfoRight, data[15].Photo, data[15].Player, data[15].Position, data[15].Age, data[15].Value, data[15].Club);
-
-
+        playerInfoLeft(svgPlayerInfoLeft, initialSelectionLeft[0]["Photo"], initialSelectionLeft[0]["Player"], initialSelectionLeft[0]["Position"], initialSelectionLeft[0]["Age"], initialSelectionLeft[0]["Value"], initialSelectionLeft[0]["Club"]);
+        playerInfoRight(svgPlayerInfoRight, initialSelectionRight[0]["Photo"], initialSelectionRight[0]["Player"], initialSelectionRight[0]["Position"], initialSelectionRight[0]["Age"], initialSelectionRight[0]["Value"], initialSelectionRight[0]["Club"]);
 
         playerBar(svgAppreances, "Appearances", "How many times a player has appeared in all of the games.",
-            data[15].Appearances, data[16].Appearances,
-            data[15].Name, data[15].Name,
+            initialSelectionLeft[0]["Appearances"], initialSelectionRight[0]["Appearances"],
             widthDomainAppearances,
             startXLineRight, startXLineLeft);
-
         playerBar(svgGoals, "Goals", "How many ...",
-            data[15].Goals, data[17].Goals,
-            data[15].Name, data[15].Name,
+            initialSelectionLeft[0]["Goals"], initialSelectionRight[0]["Goals"],
             widthDomainGoals,
             startXLineRight, startXLineLeft);
-
         playerBar(svgCaps, "Caps", "How many ...",
-            data[15].Caps, data[18].Caps,
-            data[15].Name, data[15].Name,
+            initialSelectionLeft[0]["Caps"], initialSelectionRight[0]["Caps"],
             widthDomainCaps,
             startXLineRight, startXLineLeft);
-
         playerBar(svgMinutes, "Minutes", "How many ...",
-            data[15].Minutes, data[1].Minutes,
-            data[15].Name, data[15].Name,
+            initialSelectionLeft[0]["Minutes"], initialSelectionRight[0]["Minutes"],
             widthDomainMinutes,
             startXLineRight, startXLineLeft);
-
         playerBar(svgRating, "Rating", "How many ...",
-            data[15].Rating, data[13].Rating,
-            data[15].Name, data[15].Name,
+            initialSelectionLeft[0]["Rating"], initialSelectionRight[0]["Rating"],
             widthDomainRating,
             startXLineRight, startXLineLeft);
     }
@@ -516,5 +494,77 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         initializeStats(startXLineRight, startXLineLeft);
 
     });
+
+
+
+    // Updates all values
+    function updatePlayer(selectedPlayer, check, otherPlayer) {
+
+        var selectedTeamPlayer = data.filter(function (d) { return d.FullName == selectedPlayer })
+        var unchangedTeamPlayer = data.filter(function (d) { return d.FullName == otherPlayer })
+
+        if (check == 1) {
+            playerInfoLeft(svgPlayerInfoLeft, selectedTeamPlayer[0]["Photo"], selectedTeamPlayer[0]["Player"], selectedTeamPlayer[0]["Position"], selectedTeamPlayer[0]["Age"], selectedTeamPlayer[0]["Value"], selectedTeamPlayer[0]["Club"]);
+            playerBar(svgAppreances, "Appearances", "How many times a player has appeared in all of the games.",
+                selectedTeamPlayer[0]["Appearances"], unchangedTeamPlayer[0]["Appearances"],
+                widthDomainAppearances,
+                startXLineRight, startXLineLeft);
+            playerBar(svgGoals, "Goals", "How many ...",
+                selectedTeamPlayer[0]["Goals"], unchangedTeamPlayer[0]["Goals"],
+                widthDomainGoals,
+                startXLineRight, startXLineLeft);
+            playerBar(svgCaps, "Caps", "How many ...",
+                selectedTeamPlayer[0]["Caps"], unchangedTeamPlayer[0]["Caps"],
+                widthDomainCaps,
+                startXLineRight, startXLineLeft);
+            playerBar(svgMinutes, "Minutes", "How many ...",
+                selectedTeamPlayer[0]["Minutes"], unchangedTeamPlayer[0]["Minutes"],
+                widthDomainMinutes,
+                startXLineRight, startXLineLeft);
+            playerBar(svgRating, "Rating", "How many ...",
+                selectedTeamPlayer[0]["Rating"], unchangedTeamPlayer[0]["Rating"],
+                widthDomainRating,
+                startXLineRight, startXLineLeft);
+        } else {
+            playerInfoRight(svgPlayerInfoRight, selectedTeamPlayer[0]["Photo"], selectedTeamPlayer[0]["Player"], selectedTeamPlayer[0]["Position"], selectedTeamPlayer[0]["Age"], selectedTeamPlayer[0]["Value"], selectedTeamPlayer[0]["Club"]);
+            playerBar(svgAppreances, "Appearances", "How many times a player has appeared in all of the games.",
+                unchangedTeamPlayer[0]["Appearances"], selectedTeamPlayer[0]["Appearances"],
+                widthDomainAppearances,
+                startXLineRight, startXLineLeft);
+            playerBar(svgGoals, "Goals", "How many ...",
+                unchangedTeamPlayer[0]["Goals"], selectedTeamPlayer[0]["Goals"],
+                widthDomainGoals,
+                startXLineRight, startXLineLeft);
+            playerBar(svgCaps, "Caps", "How many ...",
+                unchangedTeamPlayer[0]["Caps"], selectedTeamPlayer[0]["Caps"],
+                widthDomainCaps,
+                startXLineRight, startXLineLeft);
+            playerBar(svgMinutes, "Minutes", "How many ...",
+                unchangedTeamPlayer[0]["Minutes"], selectedTeamPlayer[0]["Minutes"],
+                widthDomainMinutes,
+                startXLineRight, startXLineLeft);
+            playerBar(svgRating, "Rating", "How many ...",
+                unchangedTeamPlayer[0]["Rating"], selectedTeamPlayer[0]["Rating"],
+                widthDomainRating,
+                startXLineRight, startXLineLeft);
+        }
+
+    }
+
+    // When the button is changed, run the updateChart function
+    d3.select("#select-player-button-left").on("change", function (d) {
+        var selectedOption = d3.select(this).property("value")
+        var rightOption = d3.select("#select-player-button-right").property("value")
+        var left = 1
+        updatePlayer(selectedOption, left, rightOption)
+    })
+
+    // When the button is changed, run the updateChart function
+    d3.select("#select-player-button-right").on("change", function (d) {
+        var selectedOption = d3.select(this).property("value")
+        var leftOption = d3.select("#select-player-button-left").property("value")
+        var left = 0
+        updatePlayer(selectedOption, left, leftOption)
+    })
 
 });
