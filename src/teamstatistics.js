@@ -8,25 +8,24 @@ var marginLogo = { top: 0, right: 0, bottom: 0, left: 0 },
   heightLogo = 50 - marginLogo.top - marginLogo.bottom;
 
 //Dimensions and margins Bar Chart
-var marginTeamBar = { top: 10, right: 0, bottom: 10, left: 0 },
+var marginTeamBar = { top: 0, right: 0, bottom: 10, left: 0 },
   widthTeamBar = 400 - marginTeamBar.left - marginTeamBar.right,
   heightTeamBar = 500 - marginTeamBar.top - marginTeamBar.bottom;
 
 //Dimensions barAxis (Y)
-var marginBarAxis = { top: 10, right: 50, bottom: 10, left: 50 },
+var marginBarAxis = { top: 0, right: 50, bottom: 0, left: 50 },
   widthBarAxis = 200 - marginBarAxis.left - marginBarAxis.right,
   heightBarAxis = 500 - marginBarAxis.top - marginBarAxis.bottom;
 
 //Dimensions for the Piechart
-var widthPie = 250;
-heightPie = 250;
-marginPie = 40;
+var widthPie = 180;
+heightPie = 180;
+marginPie = 0;
 radius = Math.min(widthPie, heightPie) / 2 - marginPie;
 tau = 2 * Math.PI,
 progress = 0,
 total = 100,
 formatPercent = d3.format(".0%");
-
 
 function generateCanvas(direction) {
     var flagCanvasId = "team-flag-" + String(direction);
@@ -98,19 +97,20 @@ teamBarChartAxis
   .enter()
   .append("text")
   .attr("x", 50)
-  .attr("y", function(d, i) { return 27 + i * 39.1; })
+  .attr("y", function(d, i) { return 30 + i * 39.8; })
   .text(function(d) { return d; })
   .attr("text-anchor", "middle")
   .style("alignment-baseline", "middle")
-  .style("font-size", 20)
+  .style("font-size", "18.72px")
   .style("font-weight", "bold");
-
+  
 //Read the data
 Promise.all([
   d3.csv("./data/wc_teams_infos.csv"),
   d3.csv("./data/wc_team_stats.csv"),
   d3.csv("./data/World_cup_2018_players_complete.csv")
 ]).then(function(data) {
+
   //map with all team names
   var allteams = d3.map(data[1], function(d) { return d.country; }).keys();
 
@@ -137,10 +137,10 @@ Promise.all([
 
     return divIdSet;
   }
-
+  
   function initialiseParts(direction, startIndex) {
-    // generate index value and set the selector to the team at that index value in the data array
-    var startIndex = startIndex;
+    
+    //window.initialiseFirstPlayerOnTeamChange(data[0][startIndex]["country"]);
 
     generateDivIds(direction);
 
@@ -153,8 +153,7 @@ Promise.all([
       .text(function(d) { return d; }) // text showed in the menu
       .attr("value", function(d) { return d; });
 
-    d3.select("#" + divIdSet[0]).property("selectedIndex", startIndex);
-
+      d3.select("#" + divIdSet[0]).property("selectedIndex", startIndex);
 
     //Flag
     window["flagCanvas" + direction]
@@ -276,7 +275,6 @@ Promise.all([
         if(direction == "left"){ return x(d.value) + setBarLabeldirection(direction); 
       } else{ return widthTeamBar - x(d.value) + setBarLabeldirection(direction)}
       })
-     // .attr("x", function(d) { return x(d.value) + setBarLabeldirection(direction); })
       .attr("y", function(d) { return y(d.category) + 5 ; })
       .attr("font-family", "dusha")
       .style("font-weight", "bold")
@@ -287,7 +285,7 @@ Promise.all([
     var arc = d3
       .arc()
       .startAngle(0)
-      .innerRadius(110)
+      .innerRadius(70)
       .outerRadius(radius);
 
     //Neutral background color to close the circle
@@ -309,9 +307,9 @@ Promise.all([
       .attr("class", "percentage")
       .attr("text-anchor", "middle")
       .attr("font-family", "dusha")
-      .attr("font-size", "2.5em")
-      .attr("x", 10)
-      .attr("y", 20)
+      .attr("font-size", "1.8em")
+      .attr("x", 8)
+      .attr("y", 10)
       .text(data[0][startIndex]["possession"] + "%");
 
     function arcTween(newAngle, newText, direction) {
@@ -330,7 +328,7 @@ Promise.all([
       return d.Team == data[0][startIndex]["country"];
     });
 
-    // Dropdown-player left
+    // Dropdown-player
     d3.select("#" + divIdSet[5])
       .selectAll("myOptions")
       .data(initialTeamPlayers)
@@ -469,7 +467,10 @@ Promise.all([
         .append("option")
         .merge(updatePlayerSelect)
         .text(function(d) { return d.FullName; }) // text showed in the menu
-        .attr("value", function(d) { return d.FullName; });
+        .attr("value", function(d) { return d.FullName; })
+        .property("selectedIndex", 0);
+  
+      window.initialiseFirstPlayerOnTeamChange(selectedTeam, direction);
 
     }
 

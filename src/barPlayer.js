@@ -1,4 +1,45 @@
+const canvPlayerHeight = 75;
+
+const svgPlayerInfoLeft = d3.select("#player-picture-left").append("svg")
+    .attr("width", "100%")
+    .attr("height", 200)
+    .style("horizontal-align", "middle");
+
+const svgPlayerInfoRight = d3.select("#player-picture-right").append("svg")
+    .attr("width", "100%")
+    .attr("height", 200)
+    .style("horizontal-align", "middle");
+
+const svgAppreances = d3.select("#player-stats-appearances").append("svg")
+    .attr("width", "100%")
+    .attr("height", canvPlayerHeight)
+    .style("horizontal-align", "middle");
+
+const svgGoals = d3.select("#player-stats-goals").append("svg")
+    .attr("width", "100%")
+    .attr("height", canvPlayerHeight)
+    .style("horizontal-align", "middle");
+
+const svgCaps = d3.select("#player-stats-caps").append("svg")
+    .attr("width", "100%")
+    .attr("height", canvPlayerHeight)
+    .style("horizontal-align", "middle");
+
+const svgMinutes = d3.select("#player-stats-minutes").append("svg")
+    .attr("width", "100%")
+    .attr("height", canvPlayerHeight)
+    .style("horizontal-align", "middle");
+
+const svgRating = d3.select("#player-stats-rating").append("svg")
+    .attr("width", "100%")
+    .attr("height", canvPlayerHeight)
+    .style("horizontal-align", "middle");
+
+
 d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
+    
+    window.initialiseFirstPlayerOnTeamChange = function(selectedTeam, direction) {
+
     var initialLeft = d3.select("#select-player-button-left").property("value")
     var initialRight = d3.select("#select-player-button-right").property("value")
 
@@ -7,43 +48,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
 
     console.log("INITIALWERTE", initialSelectionLeft)
 
-    const canvPlayerHeight = 75;
-
-    const svgPlayerInfoLeft = d3.select("#player-picture-left").append("svg")
-        .attr("width", "100%")
-        .attr("height", 200)
-        .style("horizontal-align", "middle");
-
-    const svgPlayerInfoRight = d3.select("#player-picture-right").append("svg")
-        .attr("width", "100%")
-        .attr("height", 200)
-        .style("horizontal-align", "middle");
-
-    const svgAppreances = d3.select("#player-stats-appearances").append("svg")
-        .attr("width", "100%")
-        .attr("height", canvPlayerHeight)
-        .style("horizontal-align", "middle");
-
-    const svgGoals = d3.select("#player-stats-goals").append("svg")
-        .attr("width", "100%")
-        .attr("height", canvPlayerHeight)
-        .style("horizontal-align", "middle");
-
-    const svgCaps = d3.select("#player-stats-caps").append("svg")
-        .attr("width", "100%")
-        .attr("height", canvPlayerHeight)
-        .style("horizontal-align", "middle");
-
-    const svgMinutes = d3.select("#player-stats-minutes").append("svg")
-        .attr("width", "100%")
-        .attr("height", canvPlayerHeight)
-        .style("horizontal-align", "middle");
-
-    const svgRating = d3.select("#player-stats-rating").append("svg")
-        .attr("width", "100%")
-        .attr("height", canvPlayerHeight)
-        .style("horizontal-align", "middle");
-
+   
     console.log("Name", data[15].FullName)
 
     var currentWidth = parseInt(d3.select("#player-stats-appearances").style("width"));
@@ -72,15 +77,19 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
             .attr("y", "20%")
             .attr("transform", "translate(-50, -50)")
             .data(data)
+            .attr("id", "player-left-image")
             .attr("xlink:href", playerImage)
-            .attr("width", 170);
+            .attr("width", 170)
+            .attr("heigth", 170);
 
         svg.append("image")
             .attr("x", "11.5%")
             .attr("y", "110%")
             .attr("transform", "translate(-50, -50)")
+            .attr("id", "player-left-line")
             .attr("xlink:href", "./images/player_line.svg")
-            .attr("width", 150);
+            .attr("width", 150)
+            .attr("heigth", 16.91);
 
         svg.append("text")
             .attr("x", "38%")
@@ -179,15 +188,19 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
             .attr("y", "20%")
             .attr("transform", "translate(-50, -50)")
             .data(data)
+            .attr("id", "player-right-image")
             .attr("xlink:href", playerImage)
-            .attr("width", 170);
+            .attr("width", 170)
+            .attr("height", 170);
 
         svg.append("image")
             .attr("x", "76.5%")
             .attr("y", "110%")
             .attr("transform", "translate(-50, -50)")
+            .attr("id", "player-right-line")
             .attr("xlink:href", "./images/player_line.svg")
-            .attr("width", 150);
+            .attr("width", 150)
+            .attr("height", 16.91);
 
         svg.append("text")
             .attr("x", "10%")
@@ -484,7 +497,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
             widthDomainRating,
             startXLineRight, startXLineLeft);
     }
-
+   
     initializeStats(startXLineRight, startXLineLeft);
 
     window.addEventListener('resize', function () {
@@ -551,8 +564,8 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
 
     }
 
-    // When the button is changed, run the updateChart function
-    d3.select("#select-player-button-left").on("change", function (d) {
+     // When the button is changed, run the updateChart function
+     d3.select("#select-player-button-left").on("change", function (d) {
         var selectedOption = d3.select(this).property("value")
         var rightOption = d3.select("#select-player-button-right").property("value")
         var left = 1
@@ -566,5 +579,12 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         var left = 0
         updatePlayer(selectedOption, left, leftOption)
     })
+    
+}
+
+// Initialise with first countries (no selection done yet)
+window.initialiseFirstPlayerOnTeamChange()
+
+
 
 });

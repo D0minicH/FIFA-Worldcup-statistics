@@ -110,7 +110,7 @@ nav {
   border-color: #e5c685;
   display: grid;
   justify-items: center;
-  grid-template-columns: 45 10 45;
+  grid-template-columns: 35fr 30fr 35fr;
   grid-template-rows: auto;
   grid-template-areas: "left-select page-links right-select";
 }
@@ -235,7 +235,7 @@ nav {
 /*BarChart Grid -- end*/
 
 /*Possession Grid*/
-.possession-pie-left {
+#possession-pie-left {
   grid-area: pie-left;
   justify-self: end;
 }
@@ -245,18 +245,19 @@ nav {
   grid-area: category-title;
 }
 
-.possession-pie-right {
+#possession-pie-right {
   grid-area: pie-right;
   justify-self: start;
 }
 
 .possession-pie {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-columns: 45 10 45;
+  grid-template-columns: 41fr 18fr 41fr;
   grid-template-rows: auto;
   grid-template-areas: "pie-left category-title pie-right";
 }
@@ -270,7 +271,8 @@ nav {
 }
 
 #select-overall-team-button{
-  margin-bottom: 5%;
+  margin-top: 1%;
+  margin-bottom: 2%;
 }
 
 /*Player Table*/
