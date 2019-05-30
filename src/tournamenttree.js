@@ -2,7 +2,7 @@
 // set the dimensions and margins of the diagram
 var margin = { top: 40, right: 50, bottom: 50, left: 100 },
   width = 700 - margin.left - margin.right,
-  height = 600 - margin.top - margin.bottom,
+  height = 630 - margin.top - margin.bottom,
   separationConstant = 1;
 
 var treeData = {
@@ -220,7 +220,7 @@ var labels = d3
   .classed("table", true)
   .classed("played", d => d.data.ascore || d.data.bscore)
 
-  .style("left", d => width - d.y + (margin.left*0.5) + "px")
+  .style("left", d => width - d.y + (margin.left*0.4) + "px")
   .style("top", d => d.x + (!d.data.b ? 12 : 0) + (!d.data.children ? -4 : 0) + 15 + "px")
   .html(d => gameTemplate(d));
 
