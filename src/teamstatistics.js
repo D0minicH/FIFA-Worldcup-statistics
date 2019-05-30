@@ -147,14 +147,15 @@ Promise.all([
     // Dropdown-Select Team
     d3.select("#" + divIdSet[0])
       .selectAll("myOptions")
-      .data(allteams)
+      .data(data[0])
       .enter()
       .append("option")
-      .text(function(d) { return d; }) // text showed in the menu
-      .attr("value", function(d) { return d; });
+      .text(function(d) { return d.country; }) // text showed in the menu
+      .attr("value", function(d) { return d.country; })
+      .attr("data-icon", function(d) { return d.flag});
 
       d3.select("#" + divIdSet[0]).property("selectedIndex", startIndex);
-
+   
     //Flag
     window["flagCanvas" + direction]
       .append("image")
@@ -335,7 +336,8 @@ Promise.all([
       .enter()
       .append("option")
       .text(function(d) { return d.FullName; }) // text showed in the menu
-      .attr("value", function(d) { return d.FullName; });
+      .attr("value", function(d) { return d.FullName; })
+      .attr("data-icon", function(d) { return d.Photo});
 
     // Updates all values
     function updateAll(selectedTeam, direction) {
@@ -468,8 +470,15 @@ Promise.all([
         .merge(updatePlayerSelect)
         .text(function(d) { return d.FullName; }) // text showed in the menu
         .attr("value", function(d) { return d.FullName; })
+        .attr("data-icon", function(d) { return d.Photo})
         .property("selectedIndex", 0);
+      
+      //initialize Materialize Dropdown
+        $(document).ready(function(){
+        $('select').formSelect();
+      });
   
+      //Update Player statistics on dropdown select
       window.initialiseFirstPlayerOnTeamChange(selectedTeam, direction);
 
     }
@@ -485,4 +494,10 @@ Promise.all([
         updateAll(selectedOptionRight, "right");
       });
   }
+
+  //initialize Materialize Dropdown
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
 });
+
