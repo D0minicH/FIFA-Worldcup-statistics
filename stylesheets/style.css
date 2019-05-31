@@ -282,11 +282,24 @@ nav {
   align-items: center;
 }
 
+.select-overall{
+  min-width: 350px;
+}
+
+.select-overall .select-wrapper input.select-dropdown{
+  font-size: 1.5em;
+  border-bottom: 1px solid #9e9e9e;
+}
+
 #select-overall-team-button{
   margin-top: 1%;
   margin-bottom: 2%;
 }
 
+#player-left-line{
+  width: 170;
+  height:170;
+}
 /*Player Table*/
 .player-select-left{
   margin-right: 15%; 

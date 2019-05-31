@@ -80,7 +80,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
             .attr("id", "player-left-image")
             .attr("xlink:href", playerImage)
             .attr("width", 170)
-            .attr("heigth", 170);
+            .attr("height", 170);
 
         svg.append("image")
             .attr("x", "11.5%")
@@ -89,7 +89,7 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
             .attr("id", "player-left-line")
             .attr("xlink:href", "./images/player_line.svg")
             .attr("width", 150)
-            .attr("heigth", 16.91);
+            .attr("height", 16.91);
 
         svg.append("text")
             .attr("x", "38%")
