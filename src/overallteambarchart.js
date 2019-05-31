@@ -105,10 +105,10 @@ var yAxis = overallTeamBarChartCanvas.append("g")
           .transition()
             .duration(1000)
               .attr("x", function(d) { return x(d.country); })
-              .attr("y", function(d) { return y(d[selectedOption]) - 15; })
+              .attr("y", function(d) { return y(d[selectedOption]) - 17; })
               .attr("xlink:href",function(d) {return d.flag})
-              .attr("height", 12.5)
-              .attr("width", 25);
+              .attr("height", 18.5)
+              .attr("width", 24);
     }
 
     //initialize plot
