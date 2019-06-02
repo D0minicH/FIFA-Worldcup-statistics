@@ -1,7 +1,7 @@
 
-var marginFlag = { top: 0, right: 0, bottom: 0, left: 0 },
+var marginFlag = { top: 9, right: 0, bottom: 0, left: 0 },
   widthFlag = 100 - marginFlag.left - marginFlag.right,
-  heightFlag = 50 - marginFlag.top - marginFlag.bottom;
+  heightFlag = 60 - marginFlag.top - marginFlag.bottom;
 
 var marginLogo = { top: 0, right: 0, bottom: 0, left: 0 },
   widthLogo = 80 - marginLogo.left - marginLogo.right,
