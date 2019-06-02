@@ -123,9 +123,9 @@ Promise.all([
   //map with all team names
   var allteams = d3.map(data[1], function(d) { return d.country; }).keys();
 
-   //initialise both sides
-   initialiseParts("left", 0);
-   initialiseParts("right", 15);
+  //initialise both sides
+   initialiseParts("left", 10);
+   initialiseParts("right", 6);
 
   function generateDivIds(direction){
     divIdSet = [];
