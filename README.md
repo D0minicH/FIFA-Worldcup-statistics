@@ -15,6 +15,5 @@ Student 2: Hristian Stoilov
 | Version | Status |
 | --- | --- |
 | 1.0 | finished |
-
 | First prototype ready | yes | 
 | Final version ready  | yes |
