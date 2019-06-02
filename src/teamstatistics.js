@@ -119,7 +119,6 @@ Promise.all([
   d3.csv("./data/wc_team_stats.csv"),
   d3.csv("./data/World_cup_2018_players_complete.csv")
 ]).then(function(data) {
-  console.log(data[2])
 
   //map with all team names
   var allteams = d3.map(data[1], function(d) { return d.country; }).keys();
@@ -483,7 +482,7 @@ Promise.all([
       });
   
       //Update Player statistics on dropdown select
-      window.initialiseFirstPlayerOnTeamChange(selectedTeam, direction);
+      window.initialiseFirstPlayerOnTeamChange();
 
     }
 
