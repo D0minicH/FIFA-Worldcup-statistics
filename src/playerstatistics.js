@@ -46,9 +46,9 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
     var topPlayer = initialLeftTest.filter(function (d) { if (d.Rating == maxRating){
         return d.FullName[0] } 
     });
-    console.log("Initial TEAM: " + initialLeftTest)
-    console.log("TOPRATING: " + maxRating)
-    console.log("TOPPLAYER: " + topPlayer)
+    // console.log("Initial TEAM: " + initialLeftTest)
+    // console.log("TOPRATING: " + maxRating)
+    // console.log("TOPPLAYER: " + topPlayer)
 
 
     var initialLeft = d3.select("#select-player-button-left").property("value")
@@ -58,18 +58,18 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
     var initialSelectionRight = data.filter(function (d) { return d.FullName == initialRight })
 
 
-    console.log("INITIALWERTE", initialSelectionLeft)
+    // console.log("INITIALWERTE", initialSelectionLeft)
 
    
-    console.log("Name", data[15].FullName)
+    // console.log("Name", data[15].FullName)
 
     var currentWidth = parseInt(d3.select("#player-stats-appearances").style("width"));
 
     var startXLineRight = (currentWidth / 2) - 80;
     var startXLineLeft = (currentWidth / 2) + 80;
 
-    console.log(window.innerWidth);
-    console.log(svgAppreances.style("width"));
+    // console.log(window.innerWidth);
+    // console.log(svgAppreances.style("width"));
 
     const widthDomainAppearances = d3.extent(data, d => Number(d.Appearances));
     const widthDomainGoals = d3.extent(data, d => Number(d.Goals));
@@ -372,14 +372,14 @@ d3.csv("./data/World_cup_2018_players_complete.csv").then(function (data) {
         var endXScoreLineRight = (((startXLineRight - endXLineRight) / widthDomain[1]) * scorePlayerLeft);
         var endXScoreLineLeft = (((endXLineLeft - startXLineLeft) / widthDomain[1]) * scorePlayerRight) + (containerWidth / 2) + 80;
 
-        console.log("EndXLine", endXLineRight);
-        console.log("EndXScoreLineRight", endXScoreLineRight);
-        console.log("EndScoreLineLeft", endXScoreLineLeft)
-        console.log("ENDXLINE", endXLineLeft)
-        console.log("StartXLineLeft", startXLineLeft);
-        console.log("Property", containerWidth);
+        // console.log("EndXLine", endXLineRight);
+        // console.log("EndXScoreLineRight", endXScoreLineRight);
+        // console.log("EndScoreLineLeft", endXScoreLineLeft)
+        // console.log("ENDXLINE", endXLineLeft)
+        // console.log("StartXLineLeft", startXLineLeft);
+        // console.log("Property", containerWidth);
 
-        // Background Color
+        // // Background Color
         svg.append("rect")
             .attr("width", "100%")
             .attr("height", "100%")

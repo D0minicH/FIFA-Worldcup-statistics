@@ -104,12 +104,22 @@ teamBarChartAxis
   .style("font-size", "18.72px")
   .style("font-weight", "bold");
   
+//Find index of searched Player in given Array
+ function findIndex(teamArray, topPlayerName){
+        for (i = 0; i < teamArray.length; i++){
+          if(teamArray[i].Player == topPlayerName){
+            return i;
+          }
+        }
+      }
+
 //Read the data
 Promise.all([
   d3.csv("./data/wc_teams_infos.csv"),
   d3.csv("./data/wc_team_stats.csv"),
   d3.csv("./data/World_cup_2018_players_complete.csv")
 ]).then(function(data) {
+  console.log(data[2])
 
   //map with all team names
   var allteams = d3.map(data[1], function(d) { return d.country; }).keys();
@@ -245,17 +255,7 @@ Promise.all([
       .attr("stroke-width", y.bandwidth())
       .attr("stroke", data[0][startIndex]["color"]);
 
-    //   .append("rect")
-    //   .attr("x", function(d){
-    //       if(direction == "left"){ return x(d.value); 
-    //     } else{ return 0}
-    //   })
-    //   .attr("y", function(d) { return y(d.category); })
-    //  // .attr("ry", 20)
-    //   .attr("width", function(d) { return widthTeamBar - x(d.value); })
-    //   .attr("height", y.bandwidth())
-    //   .attr("fill", data[0][startIndex]["color"]);
-
+  
     // Sets direction for Label for bar left/right
     function setBarLabeldirection(labelDirection) {
       if (labelDirection == "left") {
@@ -329,6 +329,9 @@ Promise.all([
       return d.Team == data[0][startIndex]["country"];
     });
 
+    var maxRating = d3.max(initialTeamPlayers, function(d) { return + d.Rating;} );
+    var initialSelectionPlayer = initialTeamPlayers.filter(function (d) { return d.Rating == maxRating })
+
     // Dropdown-player
     d3.select("#" + divIdSet[5])
       .selectAll("myOptions")
@@ -338,6 +341,10 @@ Promise.all([
       .text(function(d) { return d.FullName; }) // text showed in the menu
       .attr("value", function(d) { return d.FullName; })
       .attr("data-icon", function(d) { return d.Photo});
+
+    d3.select("#" + divIdSet[5])
+      .property("selectedIndex", findIndex(initialTeamPlayers, initialSelectionPlayer[0].Player));
+
 
     // Updates all values
     function updateAll(selectedTeam, direction) {
@@ -409,16 +416,6 @@ Promise.all([
         .attr("stroke-linecap", "round")
         .attr("stroke-width", y.bandwidth())
         .attr("stroke", generalInfoDataFilter[0]["color"]);
-        
-        
-        // .attr("x", function(d){
-        //     if(direction == "left"){ return x(d.value); 
-        //   } else{ return 0}
-        // })
-        // .attr("y", function(d) { return y(d.category); })
-        // .attr("width", function(d) { return widthTeamBar - x(d.value); })
-        // .attr("height", y.bandwidth())
-        // .attr("fill", generalInfoDataFilter[0]["color"]);
 
       // variable to map data to existing barText
       var updateBartext = window["teamBarChartCanvas" + direction]
@@ -457,6 +454,10 @@ Promise.all([
         return d.Team == selectedTeam;
       });
 
+      var updatedMaxRating = d3.max(selectedTeamPlayers, function(d) { return + d.Rating;} );
+      var updatedInitialSelectionPlayer = selectedTeamPlayers.filter(function (d) { return d.Rating == updatedMaxRating })
+
+
       var updatePlayerSelect = d3
         .select("#" + divIdSet[5])
         .selectAll("option")
@@ -470,9 +471,12 @@ Promise.all([
         .merge(updatePlayerSelect)
         .text(function(d) { return d.FullName; }) // text showed in the menu
         .attr("value", function(d) { return d.FullName; })
-        .attr("data-icon", function(d) { return d.Photo})
-        .property("selectedIndex", 0);
+        .attr("data-icon", function(d) { return d.Photo});
       
+        d3.select("#" + divIdSet[5])
+          .property("selectedIndex", findIndex(selectedTeamPlayers, updatedInitialSelectionPlayer[0].Player));
+
+
       //initialize Materialize Dropdown
         $(document).ready(function(){
         $('select').formSelect();
