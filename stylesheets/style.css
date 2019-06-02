@@ -55,6 +55,33 @@ h1 {
   padding-top: 6.7%;
 }
 
+#team-comparisons::before{
+  display: block; 
+  content: " "; 
+  margin-top: -85px; 
+  height: 85px; 
+  visibility: hidden; 
+  pointer-events: none;
+}
+
+#players::before{
+  display: block; 
+  content: " "; 
+  margin-top: -55px; 
+  height: 55px; 
+  visibility: hidden; 
+  pointer-events: none;
+}
+
+#overall::before{
+  display: block; 
+  content: " "; 
+  margin-top: -55px; 
+  height: 55px; 
+  visibility: hidden; 
+  pointer-events: none;
+}
+
 /*Custom Select Button*/
 .select-top{
   border-radius: 20px;
@@ -99,6 +126,10 @@ h1 {
   font-family: dusha;
   color: white;
   font-size: 1.3rem;
+}
+
+.page-links a:hover {
+  text-decoration: underline;
 }
 
 .nav-select-right {
@@ -215,7 +246,21 @@ nav {
 }
 
 .card-title {
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-size: 100%;
+  color: grey;  
+  font-weight: lighter;
+  letter-spacing: 1px;
+}
+
+.card-value{
+  font-size:150%;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-family: dusha;
   font-weight: bold;
+  color: #BDB289;
 }
 
 /*BarChart Grid*/

@@ -37,7 +37,6 @@ const svgAssists = d3.select("#player-stats-assists").append("svg")
 
 var formatDecimalComma = d3.format(",.2f");
 
-
 Promise.all([
     d3.csv("./data/World_cup_2018_players_complete.csv"),
     d3.csv("./data/wc_teams_infos.csv")
@@ -506,15 +505,15 @@ Promise.all([
             playerBar(svgCaps, "Caps", "How many ...",
                 initialSelectionLeft[0]["Caps"], initialSelectionRight[0]["Caps"],
                 widthDomainCaps,
-                startXLineRight, startXLineLeft, "Max. caps for Country before World Cup", colorLeft, colorRight);
-            playerBar(svgMinutes, "Max. minutes", "How many ...",
+                startXLineRight, startXLineLeft, "Max. caps for country before World Cup", colorLeft, colorRight);
+            playerBar(svgMinutes, "Minutes Played", "How many ...",
                 initialSelectionLeft[0]["Minutes"], initialSelectionRight[0]["Minutes"],
                 widthDomainMinutes,
                 startXLineRight, startXLineLeft, "Max. accumulated minutes played", colorLeft, colorRight);
-            playerBar(svgAssists, "Max. assists", "How many ...",
+            playerBar(svgAssists, "Assists", "How many ...",
                 initialSelectionLeft[0]["Assists"], initialSelectionRight[0]["Assists"],
                 widthDomainAssists,
-                startXLineRight, startXLineLeft, "Max. number of Assists", colorLeft, colorRight);
+                startXLineRight, startXLineLeft, "Max. number of assists", colorLeft, colorRight);
         }
 
         initializeStats(startXLineRight, startXLineLeft);
@@ -554,15 +553,15 @@ Promise.all([
                 playerBar(svgCaps, "Caps", "How many ...",
                     selectedTeamPlayer[0]["Caps"], unchangedTeamPlayer[0]["Caps"],
                     widthDomainCaps,
-                    startXLineRight, startXLineLeft, "Max. caps for Country before World Cup", selectedTeamPlayerGetColor, otherPlayerGetColor);
-                playerBar(svgMinutes, "Minutes", "How many ...",
+                    startXLineRight, startXLineLeft, "Max. caps for country before World Cup", selectedTeamPlayerGetColor, otherPlayerGetColor);
+                playerBar(svgMinutes, "Minutes played", "How many ...",
                     selectedTeamPlayer[0]["Minutes"], unchangedTeamPlayer[0]["Minutes"],
                     widthDomainMinutes,
                     startXLineRight, startXLineLeft, "Max. accumulated minutes played", selectedTeamPlayerGetColor, otherPlayerGetColor);
                 playerBar(svgAssists, "Assists", "How many ...",
                     selectedTeamPlayer[0]["Assists"], unchangedTeamPlayer[0]["Assists"],
                     widthDomainAssists,
-                    startXLineRight, startXLineLeft, "Max. number of Assists", selectedTeamPlayerGetColor, otherPlayerGetColor);
+                    startXLineRight, startXLineLeft, "Max. number of assists", selectedTeamPlayerGetColor, otherPlayerGetColor);
             } else {
                 playerInfoRight(svgPlayerInfoRight, selectedTeamPlayer[0]["Photo"], selectedTeamPlayer[0]["Position"], selectedTeamPlayer[0]["Age"], selectedTeamPlayer[0]["Value"], selectedTeamPlayer[0]["Club"], selectedTeamPlayer[0]["Club Logo"], selectedTeamPlayer[0]["Rating"]);
                 playerBar(svgAppreances, "Appearances", "How many times a player has appeared in all of the games.",
@@ -576,15 +575,15 @@ Promise.all([
                 playerBar(svgCaps, "Caps", "How many ...",
                     unchangedTeamPlayer[0]["Caps"], selectedTeamPlayer[0]["Caps"],
                     widthDomainCaps,
-                    startXLineRight, startXLineLeft, "Max. caps for Country before World Cup", otherPlayerGetColor, selectedTeamPlayerGetColor);
-                playerBar(svgMinutes, "Minutes", "How many ...",
+                    startXLineRight, startXLineLeft, "Max. caps for country before World Cup", otherPlayerGetColor, selectedTeamPlayerGetColor);
+                playerBar(svgMinutes, "Minutes played", "How many ...",
                     unchangedTeamPlayer[0]["Minutes"], selectedTeamPlayer[0]["Minutes"],
                     widthDomainMinutes,
                     startXLineRight, startXLineLeft, "Max. accumulated minutes played", otherPlayerGetColor, selectedTeamPlayerGetColor);
                 playerBar(svgAssists, "Assists", "How many ...",
                     unchangedTeamPlayer[0]["Assists"], selectedTeamPlayer[0]["Assists"],
                     widthDomainAssists,
-                    startXLineRight, startXLineLeft, "Max. number of Assists", otherPlayerGetColor, selectedTeamPlayerGetColor);
+                    startXLineRight, startXLineLeft, "Max. number of assists", otherPlayerGetColor, selectedTeamPlayerGetColor);
             }
 
         }

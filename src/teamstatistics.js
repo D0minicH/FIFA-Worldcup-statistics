@@ -149,8 +149,6 @@ Promise.all([
   
   function initialiseParts(direction, startIndex) {
     
-    //window.initialiseFirstPlayerOnTeamChange(data[0][startIndex]["country"]);
-
     generateDivIds(direction);
 
     // Dropdown-Select Team

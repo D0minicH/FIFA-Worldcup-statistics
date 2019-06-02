@@ -1,5 +1,5 @@
 //Dimensions and margins Bar Chart
-var marginOverallTeamBar = { top: 50, right: 30, bottom: 60, left: 50 },
+var marginOverallTeamBar = { top: 50, right: 30, bottom: 100, left: 50 },
   widthOverallTeamBar = 1000 - marginOverallTeamBar.left - marginOverallTeamBar.right,
   heightOverallTeamBar = 400 - marginOverallTeamBar.top - marginOverallTeamBar.bottom;
 
@@ -62,6 +62,22 @@ var y = d3.scaleLinear()
 var yAxis = overallTeamBarChartCanvas.append("g")
   .attr("class", "overall-yaxis")
 
+//tooltip
+    var Tooltip = d3.select("#overall-team-barchart")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("text-align", "center")
+    .style("position", "relative")
+    .style("width", "100px")
+    .style("color", "white")
+    .style("background-color", "#0f4583")
+    .style("border", "solid")
+    .style("border-color",  "#BDB289")
+    .style("border-width", "2px")
+    .style("border-radius", "10px")
+    .style("padding", "5px")
+
   // Updates all values
   function updateOverallTeamBarChart(selectedOption) {
       // X axis
@@ -75,11 +91,33 @@ var yAxis = overallTeamBarChartCanvas.append("g")
       // Add Y axis
       y.domain([0, d3.max(data, function(d) { return +d[selectedOption] }) ]);
       yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+     //functions that change the tooltip at hover / move / leave 
+     var mouseover = function(d) {
+       Tooltip.style("opacity", 1)
+       d3.select(this)
+         .style("stroke", "#BDB289")
+         .style("stroke-width", 2)
+         .style("opacity", 0.8)
+     }
+     var mousemove = function(d) {
+       Tooltip
+         .html("Value: " + d[selectedOption])
+         .style("left", (d3.mouse(this)[0]+45) + "px")
+         .style("top", (d3.mouse(this)[1])-400 + "px")
+     }
+     var mouseleave = function(d) {
+       Tooltip
+         .style("opacity", 0)
+       d3.select(this)
+         .style("stroke", "none")
+         .style("opacity", 1)
+       }
   
-      //map data to existing bars
+       //map data to existing bars
       var updateBar = overallTeamBarChartCanvas.selectAll("rect")
         .data(data)
-  
+
       // update bars
       updateBar
         .enter()
@@ -91,8 +129,14 @@ var yAxis = overallTeamBarChartCanvas.append("g")
             .attr("y", function(d) { return y(d[selectedOption]); })
             .attr("width", x.bandwidth())
             .attr("height", function(d) { return heightOverallTeamBar - y(d[selectedOption]); })
-            .attr("fill", function(d){return colorScale(d.country) })  
+            .attr("fill", function(d){return colorScale(d.country) })
+            
       
+      overallTeamBarChartCanvas.selectAll("rect")
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
+
       //update image labels
       var updateBarImage = overallTeamBarChartCanvas.selectAll("image")
           .data(data)
