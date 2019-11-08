@@ -9,6 +9,7 @@ Student 2: Hristian Stoilov
 
 ## Technical information
 **Main file path**: index.html
+Check it out live here: https://web.fhnw.ch/technik/projekte/ivis/2019/fifa2018/index.html
 
 
 ## Status
